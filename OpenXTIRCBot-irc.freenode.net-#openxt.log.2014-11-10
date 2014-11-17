@@ -1,0 +1,98 @@
+2014-11-10 10:22:05 - #openxt	chrisp__1	good morning
+2014-11-10 10:25:05 - #openxt	rphilipson	g'mornin
+2014-11-10 10:47:49 - #openxt	sirnarwhal	gutentag
+2014-11-10 10:47:54 - #openxt	sirnarwhal	hoe gaat het met je?
+2014-11-10 10:48:27 - #openxt	kevin_home	Only words I recognize there are "hoe" and "met"
+2014-11-10 10:49:06 - #openxt	sirnarwhal	literally: how goes it with you?
+2014-11-10 10:50:03 - #openxt	kevin_home	Question, would it make sense for do_build.sh (for as long as it lives) to put everything in .config into the OE local.conf instead of a select few?
+2014-11-10 10:50:06 - #openxt	sirnarwhal	hebt jullie een goede weekend?
+2014-11-10 10:51:03 - #openxt	kevin_home	That would allow for easier customization without hacking scripts or build processes to do things like inject BUILD_ARCH=i686 into local.conf
+2014-11-10 11:06:41 - #openxt	rogersc	kevin_home: makes sense to me.  What sorts of things are being left out besides BUILD_ARCH
+2014-11-10 11:11:33 - #openxt	kevin_home	There's that, as well as GIT_PROXY_COMMAND that I had to use before I was allowed to use raw git protocol. Others could creep up, but hard to predict anything until it becomes a problem
+2014-11-10 12:30:06 - #openxt	kevin_home	Added a pull request to tackle the USB CD installer issue: https://github.com/OpenXT/installer/pull/3
+2014-11-10 12:35:08 - #openxt	bennettj	kevin_home, did you mean OXT-16, rather than OXT-10?
+2014-11-10 12:43:25 - #openxt	kevin_home	Absolutely
+2014-11-10 12:43:31 - #openxt	kevin_home	OXT-10 on the brain...
+2014-11-10 12:43:49 - #openxt	bennettj	:)
+2014-11-10 12:44:26 - #openxt	kevin_home	I wonder how github will handle a commit message ammend...
+2014-11-10 12:46:39 - #openxt	kevin_home	Just as I expected...
+2014-11-10 12:46:48 - #openxt	kevin_home	Ignore the messy, but it's fixed
+2014-11-10 12:47:45 - #openxt	bennettj	doesn't look like that #comment thing works...
+2014-11-10 12:48:55 - #openxt	kevin_home	They probably don't show up until the actual merge occurs on the base
+2014-11-10 12:51:15 - #openxt	bennettj	ah, that would make sense.
+2014-11-10 12:51:23 - #openxt	kevin_home	That's assuming this functionality is actually enabled in JRIA
+2014-11-10 12:51:31 - #openxt	kevin_home	JIRA
+2014-11-10 12:52:50 - #openxt	bennettj	is there somewhere on github where it will show you the users that have the ability to merge your request?
+2014-11-10 12:54:52 - #openxt	kevin_home	Not that I know of. Probably have to have an administrative account to see that info
+2014-11-10 12:55:18 - #openxt	kevin_home	I would assume it would be Ross, Chris, Phil, and Jed
+2014-11-10 12:56:12 - #openxt	bennettj	that's a safe assumption for our stuff now, sure. I just thought it could be useful to view users who have the appropriate permissions for any given repository.
+2014-11-10 12:59:39 - #openxt	kevin_home	I think for the sake of transparency, that seems like a great idea
+2014-11-10 13:00:22 - #openxt	kevin_home	Can you add that topic to the Google Group? Someone with permissions to configure things can look to see if this is an option
+2014-11-10 13:02:52 - #openxt	chrisp__1	the teams are listed in github
+2014-11-10 13:04:29 - #openxt	kevin_home	I can only see the Collaborators team and Owners teams. Is that all there is?
+2014-11-10 13:04:32 - #openxt	chrisp__1	kevin: want to just reissue the pull request instead of the amend? i'll test it later
+2014-11-10 13:04:41 - #openxt	chrisp__1	i'm not sure how that amend even worked out there. both commits show the same changes
+2014-11-10 13:05:13 - #openxt	chrisp__1	odd
+2014-11-10 13:05:18 - #openxt	kevin_home	Yeah, I can remove and reissue. They are the same changes, I just changed the commit message for changing the JIRA hook OXT-10 to OXT-16
+2014-11-10 13:06:33 - #openxt	chrisp__1	awesome. i'll get to that after i fix this selinux build issue
+2014-11-10 13:06:58 - #openxt	chrisp__1	hopefully fix, at least
+2014-11-10 13:15:34 - #openxt	rogersc	dickonr: Hey when you get the chance could you take a look at my pull request for BVT?
+2014-11-10 13:17:45 - #openxt	kevin_home	New PR issued at https://github.com/OpenXT/installer/pull/4
+2014-11-10 13:18:44 - #openxt	kevin_home	Anyone ever hit an issue on a build where the system just reboots after the tboot seqeuence in the installer?
+2014-11-10 13:19:06 - #openxt	kevin_home	I did a build and that occurred trying to install. Got nothing out of a serial connection. Did another build and it is working just fine
+2014-11-10 13:20:06 - #openxt	kevin_home	Just perplexing to see it reboot with no way to diagnose (not enough time to access Xen terminal over serial) and no output declaring any problems
+2014-11-10 14:10:01 - #openxt	bennettj	chrisp__1, OXT-11
+2014-11-10 14:14:47 - #openxt	dickonr	rogersc: will do. Quite busy with other stuff.
+2014-11-10 14:20:57 - #openxt	rogersc	dickonr: Thanks a bunch.
+2014-11-10 14:27:15 - #openxt	chrisp__1	you guys should move bvt to /openxt/
+2014-11-10 14:27:38 - #openxt	rphilipson	+1 on that
+2014-11-10 14:28:05 - #openxt	kevin_home	Concur, takes me a while to remember it is in openxt-extras
+2014-11-10 14:28:42 - #openxt	kevin_home	It seems quite useful, time for it to go mainstream
+2014-11-10 14:29:00 - #openxt	chrisp__1	rphilipson: can you create the repo?
+2014-11-10 14:29:01 - #openxt	rphilipson	ok so grey area again - what is a quorum on this topic?
+2014-11-10 14:29:10 - #openxt	rphilipson	i can simply move it i believe
+2014-11-10 14:29:11 - #openxt	chrisp__1	i saw a +1
+2014-11-10 14:29:55 - #openxt	rphilipson	Transfer ownership
+2014-11-10 14:29:55 - #openxt	rphilipson	Transfer
+2014-11-10 14:29:55 - #openxt	rphilipson	Transfer this repo to another user or to an organization where you have admin rights.
+2014-11-10 14:29:56 - #openxt	kevin_home	Well, 2 OpenXT admins, the 2 BVT developers/contributors, and one other guy (me) seems like a good quorum to me
+2014-11-10 14:30:16 - #openxt	rphilipson	\o/
+2014-11-10 14:30:27 - #openxt	kevin_home	If Dickon concurs, that is
+2014-11-10 14:33:42 - #openxt	rphilipson	done, and i am pretty sure dickonr would want to see it there
+2014-11-10 14:34:11 - #openxt	rphilipson	rogersc - what is your github handle again - sorry forgot it :)
+2014-11-10 14:34:35 - #openxt	bennettj	crogers1 i believe
+2014-11-10 14:36:57 - #openxt	rphilipson	ok it is there - i had to restore the bvt dev group but that should be all set
+2014-11-10 14:40:08 - #openxt	kevin_home	rphilipson: Do you know why the virtual keyboard was removed from the UIVM?
+2014-11-10 14:40:27 - #openxt	kevin_home	It was there in XT 2.5 for the Samsung Slate demo and seemed functional at least
+2014-11-10 14:40:57 - #openxt	rphilipson	no i am not sure
+2014-11-10 14:41:56 - #openxt	rphilipson	i wonder if it is just off
+2014-11-10 14:42:47 - #openxt	kevin_home	The openxt-extras/vkb looks like that may be the JS bits for it
+2014-11-10 14:43:25 - #openxt	kevin_home	Maybe will assign that to my new minion
+2014-11-10 14:44:56 - #openxt	rphilipson	you have a minion - nice :)
+2014-11-10 14:45:01 - #openxt	rphilipson	can i get one?
+2014-11-10 14:45:46 - #openxt	kevin_home	Yeah, but apparently he has no web dev experience so I will try to assign it elsewhere
+2014-11-10 14:48:01 - #openxt	rphilipson	i think we are light on web dev experience in general
+2014-11-10 14:51:27 - #openxt	rogersc	Ah, thanks for the group invite Ross!
+2014-11-10 14:52:37 - #openxt	rphilipson	np
+2014-11-10 15:35:28 - #openxt	sirnarwhal	rphilipson: you like Adventure Time?
+2014-11-10 15:44:49 - #openxt	rphilipson	i do
+2014-11-10 15:47:28 - #openxt	sirnarwhal	cool
+2014-11-10 15:47:28 - #openxt	sirnarwhal	so do I
+2014-11-10 15:47:28 - #openxt	rphilipson	\o/
+2014-11-10 15:47:29 - #openxt	sirnarwhal	ALGEBRAIC!
+2014-11-10 15:47:29 - #openxt	rphilipson	all of our XT equipment is named after AT characters
+2014-11-10 15:47:38 - #openxt	sirnarwhal	oh, very cool
+2014-11-10 15:48:48 - #openxt	sirnarwhal	we should start naming the service domains after them as well
+2014-11-10 15:48:48 - #openxt	sirnarwhal	or at the very least, releases
+2014-11-10 15:48:49 - #openxt	rphilipson	i am on board with that
+2014-11-10 16:17:25 - #openxt	rphilipson	https://www.youtube.com/watch?v=WVoLluZQDZQ
+2014-11-10 16:18:51 - #openxt	sirnarwhal	:-D
+2014-11-10 16:25:52 - #openxt	dickonr	i'm happy for bvt to get moved; especially now rogersc has got it running
+2014-11-10 16:25:54 - #openxt	dickonr	i was confused what the distinction was about
+2014-11-10 16:36:38 - #openxt	rphilipson	dickonr it was moved - all set to go
+2014-11-10 17:04:57 - #openxt	rogersc	I have a bunch of changes that I've made to better support a standalone instance of bvt (without database or autotest).  Ideal for quickly running tests on a new build.  I'll see if I can't upstream them tomorrow so people can play around with bvt
+2014-11-10 17:06:10 - #openxt	rogersc	if they want
+2014-11-10 17:07:09 - #openxt	rogersc	I'm also putting together a first draft of documentation to have so there's an easy to search reference for the bvt API
+2014-11-10 18:11:20 - #openxt	dickonr	i put some comments on the code rogersc added at https://github.com/crogers1/bvt/commit/623042b41d78cc9b24e50e14c57bfbf407d21623#diff-744647a19014dabfca9ff8a98edbabf7R62
+2014-11-10 18:11:46 - #openxt	dickonr	ah good they show up at https://github.com/OpenXT/bvt/pull/4 as well
+2014-11-10 23:49:07 - #openxt	flihp	elo?

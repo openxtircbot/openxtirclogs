@@ -1,0 +1,178 @@
+2014-11-13 08:39:36 - #openxt	qdickon	out of interest is anyone looking at running Intel GVT-g (formerly XenGT) on OpenXT yet? Specifically the trust model may be a problem but i understand it is working fairly well these days.
+2014-11-13 08:46:57 - #openxt	qdickon	ugh lost my nick agai
+2014-11-13 08:47:01 - #openxt	dickonr	better
+2014-11-13 09:28:11 - #openxt	rphilipson	dickonr: no, i dont think anybody is looking at GVT yet
+2014-11-13 09:28:40 - #openxt	rphilipson	though it should be on the overall wish list
+2014-11-13 09:40:13 - #openxt	chrisp__1	i had it running in a standalone OE xen image: https://github.com/cjp256/hype-scripts . out of date, but nothing for XT tho.
+2014-11-13 10:04:08 - #openxt	rphilipson	maybe we should have periodic triages of pull requests so we don't start building up large backlogs of them
+2014-11-13 10:04:12 - #openxt	rphilipson	e.g. refpolicy-mcs: fix path for file_contexts to point to image 
+2014-11-13 10:04:22 - #openxt	rphilipson	has been stuck in the queue for a while
+2014-11-13 10:48:31 - #openxt	chrisp__1	ya, that one should be rebased
+2014-11-13 10:49:17 - #openxt	chrisp__1	but I have been wondering about how to encourage people to do review/merge of tickets in 'Review' status
+2014-11-13 10:51:59 - #openxt	chrisp__1	then close the ticket after merge or use the #closes thing pearson suggested
+2014-11-13 12:10:05 - #openxt	earl	ls
+2014-11-13 12:11:45 - #openxt	chrisp__1	hey jed, did you get around to testing oxt-20 (xen 4.3.3?) i think you said you were giving it a spin
+2014-11-13 12:22:19 - #openxt	masterb	I have it built and installed on my test machine
+2014-11-13 12:22:31 - #openxt	masterb	but I can do much with it, as my test machine is half borked
+2014-11-13 12:24:07 - #openxt	chrisp__1	thanks.  my next aim is to clear out the XSA backfill (oxt9), so I was just waiting on the 4.3.3 to hit master
+2014-11-13 12:24:18 - #openxt	chrisp__1	anyone else care to take 4.3.3 for a test spin? :)
+2014-11-13 12:30:21 - #openxt	rphilipson	my limited test kit is all rigged up for usb testing and dev, sorry
+2014-11-13 12:33:23 - #openxt	masterb	chrisp__1, I'm trying to get a VM running on my laptop, hopefully win7 doesn't mind too much about random Alt and 9 keypresses :)
+2014-11-13 12:33:43 - #openxt	masterb	if the tools install and run, I think it'll be enough to merge
+2014-11-13 12:37:22 - #openxt	masterb	I assume the heavy screen flashing is caused by my laptop and doesn't happen during your tests chrisp__1 :p
+2014-11-13 12:43:12 - #openxt	brendan__	masterb: I was talking to Rian yesterday and he said you had some reservations about sourcing input directly as HID in dom0. Any particular reasons?
+2014-11-13 12:43:37 - #openxt	sirnarwhal	why doesn't Rian join here?
+2014-11-13 12:45:09 - #openxt	masterb	brendan__, yup, the reason is that HID events are in the format defined in the HID descriptor, which means that to parse them we need to parse the HID desc to figure out the syntax
+2014-11-13 12:45:43 - #openxt	masterb	then we probably want to convert them to a common format so that we can process them
+2014-11-13 12:46:12 - #openxt	masterb	all of that is exactly what Linux does with /dev/input/enventX...
+2014-11-13 12:46:41 - #openxt	rphilipson	it is easier to form HID events than to parse them
+2014-11-13 12:47:11 - #openxt	masterb	yeah, that's a good way to put it :)
+2014-11-13 12:54:55 - #openxt	brendan__	sirnarwhal: Because Apple hasn't released an official IRC client ;) 
+2014-11-13 12:55:56 - #openxt	sirnarwhal	lol
+2014-11-13 12:55:58 - #openxt	sirnarwhal	tool
+2014-11-13 13:10:25 - #openxt	chrisp__1	there is "Textual" in the app store!
+2014-11-13 13:10:36 - #openxt	sirnarwhal	well
+2014-11-13 13:10:45 - #openxt	sirnarwhal	considering how bad he is about responding to emails
+2014-11-13 13:10:51 - #openxt	sirnarwhal	I bet his IRC would be even worse
+2014-11-13 13:12:56 - #openxt	chrisp__1	hah
+2014-11-13 13:17:19 - #openxt	rphilipson	nice 4.3.3 is in \o/
+2014-11-13 13:38:23 - #openxt	chrisp__1	thanks jed!
+2014-11-13 13:38:27 - #openxt	chrisp__1	testing the XSAs now
+2014-11-13 13:38:44 - #openxt	rphilipson	didn't 4.3.3 pull in a bunch of XSA's?
+2014-11-13 13:38:52 - #openxt	rphilipson	how many more need to go in?
+2014-11-13 13:41:34 - #openxt	chrisp__1	4 
+2014-11-13 13:41:38 - #openxt	chrisp__1	104,105,106,108
+2014-11-13 13:42:12 - #openxt	rphilipson	not too bad
+2014-11-13 13:42:25 - #openxt	rphilipson	i put test instruction in the one for 108 but it is really untestable
+2014-11-13 13:42:32 - #openxt	rphilipson	since our vms never enable x2apic
+2014-11-13 13:42:34 - #openxt	chrisp__1	and there was an update to xsa-59
+2014-11-13 13:42:35 - #openxt	chrisp__1	http://xenbits.xen.org/gitweb/?p=xen.git;a=commit;h=3e2331d271cc0882e4013c8f20398c46c35f90a1
+2014-11-13 13:42:52 - #openxt	chrisp__1	eh, I just validated that the patches applied in the working tree
+2014-11-13 13:43:06 - #openxt	chrisp__1	and if it boots, happy thoughts
+2014-11-13 14:12:09 - #openxt	rphilipson	this is a pretty major fix to pv usb: https://github.com/OpenXT/xc-windows/pull/12
+2014-11-13 14:12:31 - #openxt	rphilipson	without this you can't really plug and unplug anything in a vm
+2014-11-13 14:12:45 - #openxt	rphilipson	and vms hang up or cannot shutdown
+2014-11-13 14:14:19 - #openxt	rphilipson	anybody out there that can review a windows kernel fix to xenbus?
+2014-11-13 14:16:43 - #openxt	earl	are you looking for just a code review or full blown testing... i have some cycles to spare if you want me to review... not that i really have any experience with OpenXt
+2014-11-13 14:24:11 - #openxt	rphilipson	that would be great - i put a lot of details in the commit message and the ticket about what is going on
+2014-11-13 14:24:16 - #openxt	rphilipson	and what the fix is trying to do
+2014-11-13 14:24:23 - #openxt	rphilipson	https://openxt.atlassian.net/browse/OXT-35
+2014-11-13 14:24:52 - #openxt	rphilipson	bear in mind though, the current XT xenbus driver is a mess
+2014-11-13 14:25:23 - #openxt	earl	lol yeah i was thinking that i do like all of your comments though I should be more verbose with mine
+2014-11-13 14:25:23 - #openxt	rphilipson	that is why i tried to isolate all the changes to only vusb devices and left everything else alon
+2014-11-13 14:25:24 - #openxt	rphilipson	e
+2014-11-13 14:34:55 - #openxt	earl	so code wise I don't see an y problems...
+2014-11-13 14:37:13 - #openxt	rphilipson	ok
+2014-11-13 14:37:27 - #openxt	rphilipson	the code to cleanup after DeviceClassReconnectNotSupported returns TRUE
+2014-11-13 14:37:52 - #openxt	rphilipson	i took from an error block just below so it should be cleaning everything up correctly
+2014-11-13 14:39:10 - #openxt	earl	yeah i like the added function... it cleanups up that really long function...
+2014-11-13 14:40:08 - #openxt	rphilipson	yea that probe function is a horror
+2014-11-13 14:40:59 - #openxt	rphilipson	there are piles of code to make device reconnect work too from previous days
+2014-11-13 14:41:20 - #openxt	rphilipson	it makes me O_o everytime i look at it
+2014-11-13 14:42:54 - #openxt	rphilipson	thanks for looking at it
+2014-11-13 14:43:13 - #openxt	earl	yeah... it hear that... because the logic flow wasn't done logical way the 1st time everyone just patches it
+2014-11-13 14:43:41 - #openxt	earl	I don't mind doing the code review i need to learn more
+2014-11-13 14:49:07 - #openxt	rphilipson	the ultimate plan is to move to the oss xenserver windows drivers
+2014-11-13 14:49:16 - #openxt	rphilipson	but i dont see that happening very soon
+2014-11-13 14:50:13 - #openxt	earl	yeah...  i feel like you guys are moving fairly quickly but seems like there is alot of upstreaming going on
+2014-11-13 14:55:30 - #openxt	Lingo_	yo
+2014-11-13 14:55:32 - #openxt	rphilipson	there is plenty to do, that is for sure
+2014-11-13 14:57:02 - #openxt	rianquinn	test
+2014-11-13 14:57:10 - #openxt	rphilipson	rianquinn nice of you to show up :)
+2014-11-13 14:57:31 - #openxt	masterb	\o/
+2014-11-13 14:57:55 - #openxt	rianquinn	yeah, chris reminded me I was missing all of the fun :)
+2014-11-13 14:58:09 - #openxt	rphilipson	plus we have been talking about you
+2014-11-13 14:58:23 - #openxt	rianquinn	All good things I'm sure !!!
+2014-11-13 14:58:31 - #openxt	rianquinn	:)
+2014-11-13 14:58:40 - #openxt	rphilipson	oh yea, all good :)
+2014-11-13 15:09:50 - #openxt	brendan__	lol
+2014-11-13 15:10:12 - #openxt	chrisp__1	quinn told me that he already owned Textual
+2014-11-13 15:10:29 - #openxt	chrisp__1	was there any resolution on how we get updates to the official mirror?
+2014-11-13 15:11:14 - #openxt	chrisp__1	i forget which ticket brought that up
+2014-11-13 15:11:33 - #openxt	rphilipson	well we discussed moving the mirror into a repo
+2014-11-13 15:11:48 - #openxt	rphilipson	but there were the 2 giant monsters in there that prevented that
+2014-11-13 15:12:57 - #openxt	rphilipson	https://groups.google.com/forum/#!topic/openxt/9ZSfH5IW5Lw
+2014-11-13 15:14:28 - #openxt	chrisp__1	Need some method to update the official mirror.
+2014-11-13 15:14:28 - #openxt	chrisp__1	My thought is to simply create a github git repo and use their raw content functionality, e.g.:
+2014-11-13 15:14:32 - #openxt	chrisp__1	https://raw.githubusercontent.com/OpenXT/openxt/master/README.md
+2014-11-13 15:15:10 - #openxt	chrisp__1	why can't debootstrap and linux be committed?
+2014-11-13 15:15:16 - #openxt	chrisp__1	are there size constraints on the git repo?
+2014-11-13 15:15:36 - #openxt	rphilipson	i don't know if there are size constraints 
+2014-11-13 15:15:37 - #openxt	chrisp__1	(other than .git being potentially huge in the future)
+2014-11-13 15:15:42 - #openxt	masterb	git is just not a fan of big files, neither is github...
+2014-11-13 15:16:05 - #openxt	rphilipson	and once that rubbish is in the history, the repo will be huge for all time
+2014-11-13 15:16:15 - #openxt	chrisp__1	yeah, but could always reinit
+2014-11-13 15:16:46 - #openxt	earl	as long as its in a seperate repo... the only major downside for git.. is searches...
+2014-11-13 15:18:02 - #openxt	rphilipson	yea we can reinit - sort of defeats having a repo
+2014-11-13 15:18:11 - #openxt	chrisp__1	it's just free hosting :)
+2014-11-13 15:18:28 - #openxt	masterb	works for me
+2014-11-13 15:18:31 - #openxt	chrisp__1	at some point once you remove the huge blobs, it shouldn't be all that bad
+2014-11-13 15:18:33 - #openxt	rphilipson	fine
+2014-11-13 15:18:48 - #openxt	masterb	if the commit even goes through :)
+2014-11-13 15:19:20 - #openxt	rphilipson	yea, try pushing huge piles of binaries to a personal repo first chrisp__1
+2014-11-13 15:19:29 - #openxt	chrisp__1	yeah i'll give it a shot
+2014-11-13 15:19:45 - #openxt	chrisp__1	i just have another file to add the mirror
+2014-11-13 15:19:47 - #openxt	masterb	that's gonna be a cool pull request :)
+2014-11-13 15:19:53 - #openxt	chrisp__1	seems silly to ask phil to add each file
+2014-11-13 15:20:01 - #openxt	masterb	yes
+2014-11-13 15:20:02 - #openxt	rphilipson	indeed
+2014-11-13 15:22:21 - #openxt	rphilipson	so i count 1 request by chrisp__1 and two +1's
+2014-11-13 15:22:25 - #openxt	rphilipson	do we need more?
+2014-11-13 15:22:41 - #openxt	rphilipson	come on folks, lets get some +1's !!
+2014-11-13 15:23:26 - #openxt	earl	+1
+2014-11-13 15:25:03 - #openxt	rphilipson	chrisp__1 do you want me to create an empty repo for you to fork and load up?
+2014-11-13 15:29:09 - #openxt	brendan__	+1
+2014-11-13 15:30:33 - #openxt	chrisp__1	yeah do it up
+2014-11-13 15:34:28 - #openxt	chrisp__1	could perhaps just fix the debootstrap first
+2014-11-13 15:35:51 - #openxt	chrisp__1	to make the debootstrap packages, does anyone know if any additional packages were generated?
+2014-11-13 15:46:12 - #openxt	rossp	chrisp__1: sorry my home network is borked
+2014-11-13 15:46:22 - #openxt	rossp	i got blown off on my main dev machine
+2014-11-13 15:46:39 - #openxt	rossp	do you want a repo called "mirror"?
+2014-11-13 15:50:22 - #openxt	rphilipson	ok back
+2014-11-13 15:51:01 - #openxt	chrisp__1	i'll just make it, if it works out, then i'll have you make it
+2014-11-13 15:51:09 - #openxt	chrisp__1	if it doesn't work, not much of a point i guess :)
+2014-11-13 15:51:28 - #openxt	rphilipson	ok
+2014-11-13 15:51:32 - #openxt	rphilipson	i bet it will work
+2014-11-13 15:52:14 - #openxt	rphilipson	https://github.com/blog/1533-new-file-size-limits
+2014-11-13 15:52:30 - #openxt	rickl	from what jed told me a while back, there aren't any custom packages in the debootstrap image
+2014-11-13 15:53:23 - #openxt	rphilipson	rickl: yea i think the only sticking point is if you generate it, you have checksum issues with the recipe
+2014-11-13 15:55:15 - #openxt	rphilipson	remote: warning: Large files detected.
+2014-11-13 15:55:15 - #openxt	rphilipson	# remote: error: File giant_file is 123.00 MB; this exceeds GitHub's file size limit of 100 MB
+2014-11-13 15:55:52 - #openxt	rickl	good point - I think that's the main reason I didn't remove the image before we put the code on github
+2014-11-13 15:56:10 - #openxt	rphilipson	i think so too
+2014-11-13 15:56:18 - #openxt	rphilipson	in fact i think you told me that was the issue :)
+2014-11-13 15:57:45 - #openxt	rphilipson	anyway i think this is going to fail - i think the file size limit is 100M
+2014-11-13 16:00:04 - #openxt	chrisp__1	ya
+2014-11-13 16:00:34 - #openxt	rphilipson	maybe you can chunk those files up and write a recipe to put them back together :)
+2014-11-13 16:19:59 - #openxt	chrisp__1	the biggest ballbreaker with the debootstrap stuff is that those ops require root privs.
+2014-11-13 16:20:20 - #openxt	chrisp__1	could make it a separate script to build it, and default the src_uri to some known local file location 
+2014-11-13 16:23:06 - #openxt	rickl	I'd considered having the location set in .config, passed through to a variable in local.conf which is referenced in the recipe
+2014-11-13 16:23:46 - #openxt	rickl	then either finding some way to prevent oe from checksumming it, or having another couple of variables passed through containing the checksums
+2014-11-13 16:25:10 - #openxt	rickl	re root privs - true, though you also need root privs when you use the debootstrap images in the build (which is also bad)
+2014-11-13 16:28:27 - #openxt	rphilipson	maybe we could just use some free storage service for now?
+2014-11-13 16:44:16 - #openxt	chrisp__1	so why even do the debootstrap bits in OE?
+2014-11-13 16:44:45 - #openxt	chrisp__1	seems like smashing a square peg in a round hole
+2014-11-13 16:45:43 - #openxt	chrisp__1	currently you rely on build slaves for windows & centos. i'd probably just extend that to debian tools as well
+2014-11-13 16:49:01 - #openxt	rogersc	dickonr: I have a v2 pull request up that addresses your feedback.  I went with a new approach for the template stuff and I think it's a good way of doing it.  Mind taking a look when you have some free time?
+2014-11-13 16:49:11 - #openxt	rogersc	https://github.com/OpenXT/bvt/pull/5
+2014-11-13 16:49:36 - #openxt	dickonr	of course
+2014-11-13 16:49:38 - #openxt	chrisp__1	or perhaps make it an external process using pbuilder/sbuild, which should allow easily adding more targets
+2014-11-13 16:51:32 - #openxt	rickl	chrisp__1 - I agree - I always thought it would have been simpler to use a debian build slave for this
+2014-11-13 16:55:33 - #openxt	chrisp__1	i'll throw together an RFC for it
+2014-11-13 16:58:34 - #openxt	chrisp__1	hey rogersc: interested?
+2014-11-13 17:13:02 - #openxt	rphilipson	chrisp__1: if you go that route, that just leaves the kernel tarball
+2014-11-13 17:20:40 - #openxt	chrisp__1	yeah, the tarball... i managed to get that using that url http://bit.ly/1u798BA
+2014-11-13 17:21:31 - #openxt	chrisp__1	straight from the ubuntu git dealio
+2014-11-13 17:23:28 - #openxt	chrisp__1	I could also just update the SRC_URI to point straight to their git tree to make it less magical
+2014-11-13 17:24:48 - #openxt	rphilipson	is the repo clone a monster? i think that is why we went with the tarball
+2014-11-13 17:25:27 - #openxt	rphilipson	anyway we can make set an option to do  a shallow clone?
+2014-11-13 17:35:11 - #openxt	chrisp__1	i don't think you can do that with OE's git fetcher. but why worry about it? who sits around for the fetches? :P
+2014-11-13 17:35:35 - #openxt	chrisp__1	ACTION goes runs time git clone git://kernel.ubuntu.com/ubuntu/linux.git
+2014-11-13 17:37:13 - #openxt	rickl	you might also check how much data it downloads :)
+2014-11-13 17:37:34 - #openxt	chrisp__1	yeah i'm waiting for that stat too
+2014-11-13 17:41:13 - #openxt	chrisp__1	my internet isn't  metered though ;)
+2014-11-13 17:46:40 - #openxt	chrisp__1	looks like 893MB, not so bad
+2014-11-13 18:12:51 - #openxt	chrisp__1	900MB sound totally unreasonable?
+2014-11-13 18:17:12 - #openxt	rphilipson	sounds like a lot of data over my sad ass home network
+2014-11-13 18:17:18 - #openxt	rphilipson	but whatever
+2014-11-13 18:22:09 - #openxt	rphilipson	i could hack my SRC_URI to grab from my local mirror

@@ -1,0 +1,292 @@
+2014-11-14 07:24:46 - #openxt	aikidoka	looks like lots of chatter yesterday
+2014-11-14 07:25:00 - #openxt	aikidoka	so much to read
+2014-11-14 07:43:06 - #openxt	earl	indeed
+2014-11-14 08:05:05 - #openxt	aikidoka	Dammit, started using my early hours doing work work.  doh!  Guess that means I'll be done early today.
+2014-11-14 08:06:26 - #openxt	earl	getting the weekend start early is always a plus
+2014-11-14 08:07:40 - #openxt	aikidoka	Well that just brings more work.  Want to get my initscripts stuff worked out, then brew more beer and do some drywall.
+2014-11-14 08:09:18 - #openxt	earl	yeah there is always something around the house that needs to get done... 
+2014-11-14 08:11:59 - #openxt	aikidoka	Well the hope is to have the house sellable by next spring to open up options.
+2014-11-14 08:15:35 - #openxt	earl	yeah i'm also in that boat myself... my house is also for sale
+2014-11-14 08:15:59 - #openxt	earl	getting the house ready for showings... is such a royal pain
+2014-11-14 08:18:43 - #openxt	aikidoka	man, I don't even want to think about that stage.  Just trying to get some remodel done before the coldest temps.  No insulation in my outer walls.
+2014-11-14 08:19:55 - #openxt	earl	ah
+2014-11-14 09:14:35 - #openxt	rphilipson	dang i just burned my fingers on a hot bagel exoskeleton
+2014-11-14 09:42:18 - #openxt	rogersc	chrisp__1: Missed me before I left yesterday, but yea I'll take a look at it.  Will you be in today?
+2014-11-14 10:05:46 - #openxt	rogersc	Hey rphilipson, when you moved bvt into the OpenXT repo, did you have to update the DVCS connector plugin to track pull requests and things from bvt?
+2014-11-14 10:06:11 - #openxt	rphilipson	DVCS plugin?
+2014-11-14 10:06:17 - #openxt	rphilipson	it that the JIRA thing?
+2014-11-14 10:06:50 - #openxt	rphilipson	i never even saw anything about that - the only custom thing i had to do was to reformulate the dev group
+2014-11-14 10:09:14 - #openxt	rogersc	Yea it's the JIRA thing that links to github
+2014-11-14 10:09:37 - #openxt	rogersc	I'm only wondering because I'm used to the pull request just popping up on the associated Jira ticket
+2014-11-14 10:10:00 - #openxt	rogersc	is there a specific place the ticket number should be located in the pull req?
+2014-11-14 10:10:19 - #openxt	rphilipson	my guess is that you have to do something special to connect it up
+2014-11-14 10:10:48 - #openxt	rphilipson	this is one for chrisp__1
+2014-11-14 10:11:06 - #openxt	rogersc	Hahah
+2014-11-14 10:22:58 - #openxt	chrisp__1	looks like it auto grabs it
+2014-11-14 10:23:04 - #openxt	chrisp__1	unless someone else added it
+2014-11-14 10:23:32 - #openxt	chrisp__1	when I first connected it, it auto-selected all repos
+2014-11-14 10:59:19 - #openxt	rphilipson	flihp has 2 pull requests to move a script oe->openxt and delete the generate_iso script
+2014-11-14 11:00:02 - #openxt	rphilipson	it looks fine to me - can someone else take a look and comment - i am not terribly familiar with those parts
+2014-11-14 11:17:41 - #openxt	chrisp__1	i'll take a looksy
+2014-11-14 11:17:46 - #openxt	chrisp__1	and test it out after this build finishes
+2014-11-14 11:18:11 - #openxt	chrisp__1	what I wasn't sure of, is if the ticket was complete
+2014-11-14 11:21:25 - #openxt	rphilipson	hmm yea i guess a ticket could have multiple pull requests over time
+2014-11-14 11:21:34 - #openxt	rphilipson	i think that is  ok 
+2014-11-14 12:30:37 - #openxt	rphilipson	kevin_home: you want these closed out:
+2014-11-14 12:30:40 - #openxt	rphilipson	https://github.com/OpenXT/xen-common-pq/pull/2
+2014-11-14 12:30:42 - #openxt	rphilipson	https://github.com/OpenXT/xen-common-pq/pull/1
+2014-11-14 12:32:42 - #openxt	rphilipson	and this one is ready to be merged:
+2014-11-14 12:32:43 - #openxt	rphilipson	https://github.com/OpenXT/xen-common-pq/pull/3
+2014-11-14 12:32:45 - #openxt	rphilipson	?
+2014-11-14 12:35:57 - #openxt	chrisp__1	ya
+2014-11-14 13:01:53 - #openxt	masterb	something doesn't make sense in our xenstore permissions...
+2014-11-14 13:02:10 - #openxt	masterb	"n" is for "no", isn't it?
+2014-11-14 13:06:14 - #openxt	brendan__	yeah, none
+2014-11-14 13:06:58 - #openxt	masterb	but most of our nodes are n0!
+2014-11-14 13:07:01 - #openxt	rphilipson	chrisp__1 done, done and done
+2014-11-14 13:07:09 - #openxt	masterb	and I can read them
+2014-11-14 13:07:33 - #openxt	rphilipson	http://xenbits.xen.org/docs/unstable/man/xenstore-chmod.1.html
+2014-11-14 13:08:20 - #openxt	masterb	yup... root@xenclient-dom0:~# xenstore-ls -fp | grep record
+2014-11-14 13:08:31 - #openxt	masterb	root@xenclient-dom0:~# xenstore-ls -fp | grep record
+2014-11-14 13:08:31 - #openxt	brendan__	If someone changes permissions of a child node, I think it propogates through the parents I think
+2014-11-14 13:08:42 - #openxt	masterb	 /local/domain/0/dm-agent/dms/17/0/infos/audio/recorder = "0"   (n0)
+2014-11-14 13:09:28 - #openxt	masterb	if it's n0, shouldn't I be allowed to read it from dom0?
+2014-11-14 13:12:16 - #openxt	brendan__	Yeah that seems right to me
+2014-11-14 13:14:22 - #openxt	rickl	"The first permission entry is the domain owning the key (the owner) and the permissions for any domain not explicitly listed in subsequent entries. The key owner always has full access (read, write, and set permissions)."
+2014-11-14 13:15:06 - #openxt	masterb	ohh, that's what I missed :) thanks rickl you're the best
+2014-11-14 13:15:18 - #openxt	rickl	np :)
+2014-11-14 14:10:05 - #openxt	rogersc	If anyone has some 'free' time, OXT-43 could use some love.  I've had good results testing it so far but it would be nice to have other eyes look it over.  Beware: it's Haskell stuff.
+2014-11-14 14:13:54 - #openxt	rphilipson	 rogersc: i can give it a go
+2014-11-14 14:17:32 - #openxt	rogersc	thanks.  If it will save some time, I've had success with dropping in the .so from building libxch-rpc and the binary from building xenmgr 
+2014-11-14 14:17:40 - #openxt	rogersc	without needing to do a full rebuild of oxt
+2014-11-14 14:17:59 - #openxt	rphilipson	i can rebuild those module
+2014-11-14 14:18:07 - #openxt	rphilipson	that is a good test too :)
+2014-11-14 14:18:16 - #openxt	rogersc	indeed :D
+2014-11-14 14:18:32 - #openxt	rphilipson	so i guess i want to pull your bvt branch since the bvt pull request is still pending
+2014-11-14 14:18:39 - #openxt	rphilipson	what is it stuck on?
+2014-11-14 14:19:06 - #openxt	rogersc	Just a review.
+2014-11-14 14:19:31 - #openxt	rogersc	Dickon pointed out a few design flaws and style issues that I addressed with the v2
+2014-11-14 14:19:42 - #openxt	rphilipson	should i checkout the v2 branch?
+2014-11-14 14:19:58 - #openxt	rogersc	Let me double check
+2014-11-14 14:20:27 - #openxt	rphilipson	or i can just grab the first version - it worked 
+2014-11-14 14:22:25 - #openxt	chrisp__1	rphilipson: all outstanding usb fixes have been merged right?
+2014-11-14 14:23:23 - #openxt	rphilipson	yes
+2014-11-14 14:23:30 - #openxt	rogersc	Ha ok.  Theres a comment in the jira ticket that has a few minor modifications you can make to bvt so it should run properly
+2014-11-14 14:23:46 - #openxt	rphilipson	which one? v1 or v2?
+2014-11-14 14:24:05 - #openxt	rogersc	Both, I should get those upstreamed asap
+2014-11-14 14:24:14 - #openxt	rogersc	Basically
+2014-11-14 14:24:24 - #openxt	rphilipson	ok
+2014-11-14 14:24:43 - #openxt	rphilipson	so i see the pull req in manager
+2014-11-14 14:24:51 - #openxt	rphilipson	were is the change to the rpc proxy?
+2014-11-14 14:24:55 - #openxt	rogersc	it's a few changes so that bvt doesn't look for the mongo db and autotest stuff
+2014-11-14 14:25:04 - #openxt	rogersc	rpc proxy is in xclibs
+2014-11-14 14:26:15 - #openxt	rphilipson	oh yea
+2014-11-14 14:30:04 - #openxt	rphilipson	damn it git!  when i type "git lgo" you should know i mean "git log"
+2014-11-14 14:30:07 - #openxt	rphilipson	stupid git
+2014-11-14 14:30:20 - #openxt	rphilipson	ok i got your stuffs rogersc
+2014-11-14 14:30:30 - #openxt	masterb	Did you mean this?
+2014-11-14 14:30:30 - #openxt	masterb		log
+2014-11-14 14:30:36 - #openxt	masterb	that's the frustrating part :)
+2014-11-14 14:31:13 - #openxt	rogersc	Great!  Let me know if you run into any issues
+2014-11-14 14:32:15 - #openxt	rphilipson	masterb: yea the "Did you mean this" pisses me off - why not "log (y|n)"
+2014-11-14 14:33:21 - #openxt	masterb	git config --global help.autocorrect 5
+2014-11-14 14:33:36 - #openxt	masterb	WARNING: You called a Git command named 'lgo', which does not exist.
+2014-11-14 14:33:36 - #openxt	masterb	Continuing under the assumption that you meant 'log'
+2014-11-14 14:33:36 - #openxt	masterb	in 0.5 seconds automatically...
+2014-11-14 14:33:38 - #openxt	masterb	\o/
+2014-11-14 14:40:24 - #openxt	rphilipson	\o/
+2014-11-14 14:40:31 - #openxt	rphilipson	me likey
+2014-11-14 14:41:57 - #openxt	rphilipson	why in the world did we write all these libraries in Haskell?!?!?!?!?!?!?!?!?!
+2014-11-14 14:44:27 - #openxt	chrisp__1	:(
+2014-11-14 14:44:40 - #openxt	chrisp__1	i also want to know why policy-modify-vm-settings affects the command line
+2014-11-14 14:45:32 - #openxt	masterb	which command line?
+2014-11-14 14:46:15 - #openxt	chrisp__1	xec-vm
+2014-11-14 14:46:23 - #openxt	chrisp__1	then someone added the .unrestricted interface
+2014-11-14 14:46:40 - #openxt	chrisp__1	i'm guessing it was because of the way the ui was designed, but ugh
+2014-11-14 14:47:00 - #openxt	rogersc	rphilipson: I feel like it was some pet project until someone realized it actually worked and then they added it to XT
+2014-11-14 14:47:59 - #openxt	rphilipson	yea 
+2014-11-14 14:48:24 - #openxt	rphilipson	masterb: didn't the people in bangalore write a lot of those things in xclibs?
+2014-11-14 14:48:55 - #openxt	rphilipson	rogersc: i pulled your branches and things built fine
+2014-11-14 14:49:13 - #openxt	rphilipson	i now have some haskell crap fresh out of the oven
+2014-11-14 14:50:28 - #openxt	masterb	it's mostly from Tomasz
+2014-11-14 14:51:04 - #openxt	rphilipson	oh i thought your bangalore buddies wrote a bunch of libs
+2014-11-14 14:51:13 - #openxt	rphilipson	maybe i am thinking of something else
+2014-11-14 14:51:19 - #openxt	masterb	xch* is Tomasz, the rest is Bangalore
+2014-11-14 14:52:36 - #openxt	rphilipson	oh ok
+2014-11-14 14:52:52 - #openxt	rphilipson	5 AARRRRGGGGH MONIT!!!!
+2014-11-14 14:53:01 - #openxt	masterb	:D
+2014-11-14 14:56:26 - #openxt	rogersc	Got 'im
+2014-11-14 14:59:12 - #openxt	rphilipson	rogersc: you reference scripts you are using here: OpenXT-Extras/scripts
+2014-11-14 14:59:20 - #openxt	rphilipson	for the bvt stuffs
+2014-11-14 14:59:37 - #openxt	rphilipson	but that repo got left in OpenXT-Extras - does it need to move too?
+2014-11-14 14:59:44 - #openxt	rogersc	Not the whole repo
+2014-11-14 14:59:57 - #openxt	rogersc	the /infrastructure directory
+2014-11-14 15:00:25 - #openxt	rogersc	needs to get into the bvt repo 
+2014-11-14 15:00:45 - #openxt	rogersc	until I can get rid of the dependency on those scripts, if possible
+2014-11-14 15:04:28 - #openxt	chrisp__1	rphilipson: i was just cursing monit about the same time. but the SV version :P
+2014-11-14 15:04:56 - #openxt	chrisp__1	looking at the broken nics, tg3 is getting crap data for packets
+2014-11-14 15:04:57 - #openxt	rphilipson	lol
+2014-11-14 15:05:00 - #openxt	rphilipson	we hate monit
+2014-11-14 15:05:08 - #openxt	chrisp__1	we made it worse
+2014-11-14 15:05:18 - #openxt	rphilipson	rogersc: ImportError: No module named twisted.internet
+2014-11-14 15:05:26 - #openxt	chrisp__1	packet sizes look like they could be legit, but the payloads not so much
+2014-11-14 15:06:38 - #openxt	rphilipson	i see many twisted python packages, what is that module in
+2014-11-14 15:06:55 - #openxt	rogersc	rphilipson: hmm...I have to look, one sec
+2014-11-14 15:07:19 - #openxt	rphilipson	oh i can look too - i thought you might know...oh Google, come here...
+2014-11-14 15:07:59 - #openxt	rphilipson	looks like twisted-web
+2014-11-14 15:08:29 - #openxt	rogersc	In my notes I have apt-get install python-twisted
+2014-11-14 15:08:39 - #openxt	rogersc	and python-twisted-conch
+2014-11-14 15:08:52 - #openxt	rphilipson	i think what i did did that anyway :)
+2014-11-14 15:09:08 - #openxt	rogersc	hahaha alright
+2014-11-14 15:09:24 - #openxt	rphilipson	but i am doing those 2
+2014-11-14 15:09:36 - #openxt	rphilipson	ACTION doesn't like pythons though
+2014-11-14 15:10:10 - #openxt	rphilipson	rogersc: ImportError: No module named private_settings
+2014-11-14 15:10:45 - #openxt	rogersc	Oh boy.  Just touch private_settings.py in your bvtlib directory
+2014-11-14 15:11:19 - #openxt	rogersc	doesn't need anything in it.
+2014-11-14 15:12:47 - #openxt	rphilipson	that did not work
+2014-11-14 15:12:57 - #openxt	rogersc	I dealt with all these problems already in my experimental tree but haven't pushed any of the changes upstream yet, so don't fight with it too much.
+2014-11-14 15:13:34 - #openxt	rogersc	Let me get you something that should just work
+2014-11-14 15:13:46 - #openxt	rphilipson	no i was missing the .py
+2014-11-14 15:13:49 - #openxt	rphilipson	got past that
+2014-11-14 15:14:04 - #openxt	rphilipson	ImportError: No module named psycopg2
+2014-11-14 15:14:17 - #openxt	rogersc	That's another install dependency
+2014-11-14 15:14:20 - #openxt	rogersc	lets see
+2014-11-14 15:14:37 - #openxt	rogersc	apt-get install python-psycopg2
+2014-11-14 15:14:44 - #openxt	rogersc	apt-get install python-pyasn1
+2014-11-14 15:15:03 - #openxt	rogersc	pip install pystan   too, if it's complaining about that
+2014-11-14 15:15:58 - #openxt	rphilipson	i am fixing your instructions as i go
+2014-11-14 15:16:35 - #openxt	rogersc	why thank you
+2014-11-14 15:18:05 - #openxt	rphilipson	python-pymongo too
+2014-11-14 15:19:17 - #openxt	rogersc	That's definitely one I don't want anymore
+2014-11-14 15:19:46 - #openxt	rphilipson	:)
+2014-11-14 15:19:49 - #openxt	rphilipson	also: python-pysnmp-common
+2014-11-14 15:20:24 - #openxt	rphilipson	uurrg
+2014-11-14 15:20:25 - #openxt	rphilipson	ImportError: No module named requests
+2014-11-14 15:20:29 - #openxt	rphilipson	what is that?
+2014-11-14 15:20:31 - #openxt	rogersc	oh boy
+2014-11-14 15:21:14 - #openxt	rogersc	That has something to do with the syncxt tests
+2014-11-14 15:21:21 - #openxt	rphilipson	yup that is the package name
+2014-11-14 15:21:27 - #openxt	rphilipson	python-requests
+2014-11-14 15:21:48 - #openxt	bennettj	moral of the story: you need a whole bunch of python packages. haha.
+2014-11-14 15:22:00 - #openxt	rphilipson	this is a good test because my system was totally python free until this :)
+2014-11-14 15:22:15 - #openxt	rogersc	See, when you get them all the first time 
+2014-11-14 15:22:30 - #openxt	rogersc	you just assume all machines have them
+2014-11-14 15:22:39 - #openxt	rogersc	and forget which packages you originally had to install
+2014-11-14 15:22:45 - #openxt	rphilipson	ok so something more happened
+2014-11-14 15:22:56 - #openxt	rphilipson	i entered the root pw 2x
+2014-11-14 15:22:59 - #openxt	rphilipson	then it crapped out
+2014-11-14 15:23:11 - #openxt	rphilipson	AttributeError: Values instance has no attribute 'vhd_name'
+2014-11-14 15:23:44 - #openxt	rphilipson	missing a setting?
+2014-11-14 15:24:00 - #openxt	rogersc	That's something I added in the v2
+2014-11-14 15:24:23 - #openxt	rphilipson	go back to v1 or what?
+2014-11-14 15:24:41 - #openxt	rphilipson	looks like an env variable
+2014-11-14 15:24:54 - #openxt	rogersc	Yea it gets passed into the construct_ag_dict in experiments.py
+2014-11-14 15:24:57 - #openxt	rogersc	arg*
+2014-11-14 15:25:36 - #openxt	rogersc	Need to look at my diff, brb
+2014-11-14 15:27:24 - #openxt	rphilipson	ug python
+2014-11-14 15:28:04 - #openxt	rogersc	Found it
+2014-11-14 15:28:16 - #openxt	rogersc	Forgot to include an option on the parser
+2014-11-14 15:28:42 - #openxt	rogersc	parser.add_option('--vhd-name', action='store', metavar='VHDNAME', help='Use this name for the VHD at the destination')
+2014-11-14 15:29:19 - #openxt	rogersc	drop that in after the last parser.add_option in experiments.py
+2014-11-14 15:29:46 - #openxt	rphilipson	and add a name to my cmdline?
+2014-11-14 15:30:02 - #openxt	rogersc	Which test are you trying to run?
+2014-11-14 15:30:10 - #openxt	rphilipson	i dunno :)
+2014-11-14 15:30:17 - #openxt	rphilipson	the one you are referencing in the ticket
+2014-11-14 15:30:26 - #openxt	rogersc	Haha ok well if you just do the --templateStress it doesn't need a vhdname
+2014-11-14 15:30:34 - #openxt	rogersc	cause it won't actually boot the vm
+2014-11-14 15:30:43 - #openxt	rogersc	or create a disk
+2014-11-14 15:31:21 - #openxt	rphilipson	 ./experiments.py -m 192.168.1.107 --templateStress
+2014-11-14 15:31:26 - #openxt	rphilipson	so i guess i am ok
+2014-11-14 15:31:31 - #openxt	rogersc	yep
+2014-11-14 15:32:06 - #openxt	rphilipson	so it just keeps making me type in a password
+2014-11-14 15:32:09 - #openxt	rphilipson	forever
+2014-11-14 15:32:19 - #openxt	rphilipson	is this a stress test on me?
+2014-11-14 15:32:25 - #openxt	rogersc	...perhaps
+2014-11-14 15:32:38 - #openxt	rogersc	haha 
+2014-11-14 15:32:47 - #openxt	rphilipson	63.307s INFO: Iteration 1
+2014-11-14 15:32:54 - #openxt	rphilipson	i get those occasionally
+2014-11-14 15:33:07 - #openxt	rogersc	It shouldn't ask for a password
+2014-11-14 15:33:29 - #openxt	rphilipson	it blew up my terminal too
+2014-11-14 15:34:11 - #openxt	rogersc	Well, perhaps we should stop here bfore I embarass myself further
+2014-11-14 15:34:20 - #openxt	rogersc	embarrass*
+2014-11-14 15:35:20 - #openxt	rphilipson	well i think you fix is fine - this is a bvt problem it seems
+2014-11-14 15:35:32 - #openxt	rphilipson	do i need to do anything on the client to let bvt talk to it?
+2014-11-14 15:36:44 - #openxt	rogersc	Not that I can think of.  I madea  clean build and bvt interfaced with it just fine
+2014-11-14 15:38:15 - #openxt	rogersc	bvt just does a root ssh login with no host key checking and fires off a command
+2014-11-14 15:38:43 - #openxt	rphilipson	well my root use does have a passwd
+2014-11-14 15:39:04 - #openxt	rogersc	Ah, yes that would create an issue
+2014-11-14 15:41:50 - #openxt	rogersc	You could setup ssh keys to login without requiring the password
+2014-11-14 15:43:01 - #openxt	rphilipson	i got rid of the passwd
+2014-11-14 15:43:40 - #openxt	rphilipson	it is working !!!!!!!!!!!!!!
+2014-11-14 15:43:45 - #openxt	rogersc	Hurray!
+2014-11-14 15:43:55 - #openxt	rphilipson	making many vms
+2014-11-14 15:44:29 - #openxt	rogersc	I think the UI might be fooling you, the test will delete it after creating it so there's only ever 1 at a time
+2014-11-14 15:44:43 - #openxt	rphilipson	:(
+2014-11-14 15:44:57 - #openxt	rphilipson	":1.14" is not allowed to add more match rules
+2014-11-14 15:45:00 - #openxt	rphilipson	at 91
+2014-11-14 15:45:41 - #openxt	rogersc	Well that's unexpected
+2014-11-14 15:46:28 - #openxt	rphilipson	wtf i copied xenmgr, checked its hash and rebooted
+2014-11-14 15:46:34 - #openxt	rphilipson	and now i have an old copy
+2014-11-14 15:47:01 - #openxt	rogersc	Selinux or Monit maybe?
+2014-11-14 15:47:37 - #openxt	rphilipson	selinux is disable 
+2014-11-14 15:47:49 - #openxt	rphilipson	i am going to murder monit in a minute
+2014-11-14 15:47:56 - #openxt	aikidoka	ha ha
+2014-11-14 15:48:05 - #openxt	aikidoka	such strong words
+2014-11-14 15:49:29 - #openxt	rphilipson	ok somehow i had the wrong binary there
+2014-11-14 15:49:33 - #openxt	rphilipson	rebooting...
+2014-11-14 15:49:49 - #openxt	rphilipson	btw is there a way to get rid of all those new vms?  :)
+2014-11-14 15:50:09 - #openxt	rogersc	I'm still trying to figure out why they even show up in the ui at all
+2014-11-14 15:50:26 - #openxt	rogersc	since I have hidden in ui flags enabled
+2014-11-14 15:50:42 - #openxt	rphilipson	maybe that flag is busted
+2014-11-14 15:51:57 - #openxt	rogersc	Well if you reboot the uivm with xec-vm
+2014-11-14 15:52:00 - #openxt	rogersc	they go away
+2014-11-14 15:52:04 - #openxt	rphilipson	they are gone after the reboot
+2014-11-14 15:52:15 - #openxt	rogersc	but obviously that's not ideal
+2014-11-14 15:52:37 - #openxt	rphilipson	ok test running...
+2014-11-14 15:53:25 - #openxt	rphilipson	102
+2014-11-14 15:53:35 - #openxt	rphilipson	and climbing
+2014-11-14 15:53:44 - #openxt	rogersc	Wonderful :)
+2014-11-14 15:54:08 - #openxt	rphilipson	150
+2014-11-14 15:54:14 - #openxt	rphilipson	i guess it is fixed :)
+2014-11-14 15:54:17 - #openxt	rogersc	Eventually the test will timeout because there's a memory issue with xenmgr that I found while running this test
+2014-11-14 15:54:45 - #openxt	rogersc	xenmgr begins to eat up like ~40% of the system memory
+2014-11-14 15:55:26 - #openxt	rphilipson	yea the mem usage is climbing too
+2014-11-14 15:55:31 - #openxt	rogersc	I documented that in OXT-49
+2014-11-14 15:55:38 - #openxt	rphilipson	yea i saw
+2014-11-14 15:55:58 - #openxt	rphilipson	it shutdown at 199
+2014-11-14 15:56:01 - #openxt	rphilipson	with no error
+2014-11-14 15:56:15 - #openxt	rphilipson	181.349s INFO: Iteration 199
+2014-11-14 15:56:15 - #openxt	rphilipson	record None
+2014-11-14 15:56:15 - #openxt	rphilipson	NOTE: no mongodb so not setting install flag
+2014-11-14 15:56:21 - #openxt	rogersc	Ok, I think that was the upper end of the loop
+2014-11-14 15:56:31 - #openxt	rphilipson	k
+2014-11-14 15:56:48 - #openxt	rogersc	Yea you can increase it by opening up stress.py
+2014-11-14 15:57:01 - #openxt	rogersc	At the top theres a variable called TEMPLATE_ITERATIONS
+2014-11-14 15:57:10 - #openxt	rphilipson	ok
+2014-11-14 15:57:11 - #openxt	rogersc	bumb that up past 200
+2014-11-14 15:57:15 - #openxt	rogersc	bump*
+2014-11-14 15:57:41 - #openxt	rphilipson	so testing looks good
+2014-11-14 15:58:00 - #openxt	rphilipson	did anyone else review the code or test this?
+2014-11-14 15:58:23 - #openxt	rogersc	chrisp__1 left a couple of comments and said he'd get around to testing it
+2014-11-14 15:58:40 - #openxt	rogersc	but we're a bit short on Haskell wizards around here
+2014-11-14 16:00:46 - #openxt	rphilipson	yea i mean it looks good to me with my horribly limited knowledge of haskell
+2014-11-14 16:01:41 - #openxt	rphilipson	dude i am impressed, how did you even sort out how to do any of that>
+2014-11-14 16:01:45 - #openxt	rphilipson	?
+2014-11-14 16:02:01 - #openxt	rphilipson	the stuff in here looks complicated: https://github.com/OpenXT/xclibs/pull/1/files
+2014-11-14 16:04:11 - #openxt	rogersc	Haha thanks, I borrowed as much of the general structure as I could from stuff that was already there
+2014-11-14 16:04:30 - #openxt	rogersc	but you still need a good understanding of monads to figure out whats going on
+2014-11-14 16:05:45 - #openxt	rphilipson	so is it ready to merge? i think it is other than the extra whitespace :)
+2014-11-14 16:06:14 - #openxt	rphilipson	i would make another ticket to investigate this further since you are not sure this is the complete fix
+2014-11-14 16:07:04 - #openxt	rogersc	As far as the match rules go, I'm pretty confident this deals with it.  But yea, there is a general lack of cleanup that was never written in the first place
+2014-11-14 16:07:24 - #openxt	rogersc	which is probably causing the high memory usage
+2014-11-14 16:07:24 - #openxt	rphilipson	so you can fix the silly whitespace right inline
+2014-11-14 16:07:39 - #openxt	rogersc	ok let me go do that
+2014-11-14 16:07:55 - #openxt	rphilipson	and you already have OXT-49 
+2014-11-14 16:09:01 - #openxt	rphilipson	you can just note there is more cleanup for that FIXME
+2014-11-14 16:09:35 - #openxt	rogersc	Ok, will do.
+2014-11-14 16:12:26 - #openxt	rphilipson	i am inclined to merge it once you are ready
+2014-11-14 16:13:24 - #openxt	rogersc	Ok, I removed those whitespace problems.  Should be good to go :)
+2014-11-14 16:16:12 - #openxt	rphilipson	done
+2014-11-14 16:16:39 - #openxt	rphilipson	good find and fix
+2014-11-14 16:17:35 - #openxt	rogersc	Thank you :D
+2014-11-14 17:33:14 - #openxt	rphilipson	rogersc: still around?

@@ -1,0 +1,12 @@
+2014-11-16 00:07:47 - #openxt	aikidoka	flihp: yo
+2014-11-16 00:08:06 - #openxt	aikidoka	badsyntax: I don't know the answer to that one.
+2014-11-16 12:16:44 - #openxt	rphilipson	badsyntax: there is no external flag or other way to disable using the iommu with the ndvm
+2014-11-16 12:17:05 - #openxt	rphilipson	if you needed to do it for testing you would have to rebuild a piece of the toolstack
+2014-11-16 12:19:20 - #openxt	badsyntax	rphilipson: Thanks could you point me in that direction :D 
+2014-11-16 12:23:54 - #openxt	rphilipson	https://github.com/OpenXT/toolstack/blob/master/xenops/device.ml
+2014-11-16 12:23:57 - #openxt	rphilipson	line 1184
+2014-11-16 12:24:41 - #openxt	rphilipson	if you remove "pvpci" from the OR it will stop using the iommu with pv guests
+2014-11-16 12:25:22 - #openxt	rphilipson	just remember, for anything other than testing purposes, that is a hugely bad idea :)
+2014-11-16 12:26:42 - #openxt	rphilipson	that ocaml module ends up in two toolstack executables that you would swap out: xenvm and xenops
+2014-11-16 13:00:33 - #openxt	badsyntax	rphilipson: if (hvm || pvpci) && assign then // becomes if hvm && assign then ?
+2014-11-16 18:26:19 - #openxt	rphilipson	badsyntax: yes - when you come back online

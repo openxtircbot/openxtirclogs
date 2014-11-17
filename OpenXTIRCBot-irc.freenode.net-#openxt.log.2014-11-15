@@ -1,0 +1,15 @@
+2014-11-15 12:58:41 - #openxt	badsyntax	Good day to all..with xt 3.1.2 i was able to start ndvm without vt-d however as of openxt i havent been able to get ndvm runing is this by new design or?
+2014-11-15 12:59:32 - #openxt	badsyntax	sorry 3.1.2 >> 3.2.1
+2014-11-15 13:21:42 - #openxt	rphilipson	it is sort of a long story but it is really by design
+2014-11-15 13:22:22 - #openxt	rphilipson	the ndvm should not work without the network devices properly passed through to it using an iommu
+2014-11-15 13:24:44 - #openxt	rphilipson	out of curiosity why would you not want to use vt-d with XT?
+2014-11-15 13:30:23 - #openxt	badsyntax	on two of my machines i lack vt-d ....and on that machine security is not much of an issue...
+2014-11-15 13:33:35 - #openxt	rphilipson	bummer, sorry about that :(
+2014-11-15 13:34:14 - #openxt	rphilipson	network isolation in a device domain is an integral part of the openxt platform
+2014-11-15 13:36:06 - #openxt	badsyntax	figured that much,plan to get a haswell platform soon though or whatever comes next.would be really cool if xengt feature set could land in openxt,however not sure if it would compromise security.
+2014-11-15 13:39:06 - #openxt	rphilipson	yea haswell is supported by openxt, broadwell is next but it is not out and we have not tried openxt on it
+2014-11-15 13:40:36 - #openxt	rphilipson	XenGT/GVT-g is on the wish list - security concerns would have to be assessed
+2014-11-15 13:45:10 - #openxt	badsyntax	Thanks. about to go compile myself a build.
+2014-11-15 22:56:59 - #openxt	aikidoka	Finally had an install complete with the layering work!  Just need to rebuild a few more things and maybe the install OS will stop boot looping.
+2014-11-15 23:27:16 - #openxt	flihp	hey all
+2014-11-15 23:49:04 - #openxt	badsyntax	ok sorry to go against almost everything xt represents but earlier i asked about  ndvm vt-d implimentation. for test purposes would it be a simple flag i can change during build to enable ndvm to boot without vt-d

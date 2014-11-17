@@ -1,0 +1,38 @@
+2014-11-17 07:24:49 - #openxt	j105rob	earl: https://github.com/j105rob/scripts/blob/master/replicate_github.py
+2014-11-17 07:25:25 - #openxt	j105rob	^^ oh, and for anyone else who is looking to create a clone of all the repos under OpenXT
+2014-11-17 07:25:48 - #openxt	j105rob	might need some tweaking and I cannot take credit for the original code
+2014-11-17 07:25:58 - #openxt	j105rob	but my google-fu is awesome.
+2014-11-17 08:20:18 - #openxt	aikidoka	chrisp__?
+2014-11-17 08:22:06 - #openxt	chrisp___	good morning
+2014-11-17 08:22:52 - #openxt	chrisp___	aikidoka: whats up
+2014-11-17 08:24:42 - #openxt	aikidoka	my bed head
+2014-11-17 08:25:14 - #openxt	aikidoka	Did the uprev to Xen 4.3.3 happen in a way that I need to uprev also?
+2014-11-17 08:25:31 - #openxt	aikidoka	Was it a recipe addition or change to our other git repos?
+2014-11-17 08:26:01 - #openxt	aikidoka	Checking a build issue and looks like a Xen patch queue failure is next to look at.
+2014-11-17 08:26:22 - #openxt	bennettj	updated environment vars in common-config, which gets replicated to local.conf when you do the "setupoe" step in do_build.sh
+2014-11-17 08:26:36 - #openxt	chrisp___	i believe it was just a change in openxt.git... common-config
+2014-11-17 08:27:11 - #openxt	bennettj	see here: https://github.com/OpenXT/openxt/pull/39
+2014-11-17 08:27:22 - #openxt	bennettj	check the commits for the diff, it's like 4 variables.
+2014-11-17 08:27:53 - #openxt	chrisp___	to fix your current build tree, you just need to update your local.conf with the values from common-config
+2014-11-17 08:27:56 - #openxt	aikidoka	Ah ok.  So nothing changed elsewhere.
+2014-11-17 08:28:07 - #openxt	aikidoka	my apply patch queue issue is unrelated.
+2014-11-17 08:28:22 - #openxt	aikidoka	But looks like I can easily change to Xen 4.3.3.
+2014-11-17 08:28:52 - #openxt	aikidoka	Are those variables used elsewhere?  Seems odd to have them in that config instead of in the recipe.
+2014-11-17 08:29:51 - #openxt	chrisp___	we merged in the XSAs to the xen pq, and it may not apply cleanly on 4.3.2
+2014-11-17 08:30:28 - #openxt	chrisp___	aikidoka:  i agree, but they are used in a few spots, so I am saving that cleanup for later
+2014-11-17 08:30:38 - #openxt	chrisp___	feel free :)
+2014-11-17 08:31:27 - #openxt	aikidoka	gotcha.  So it will affect my patch queue.  Easy enough fix on that one then!
+2014-11-17 08:32:00 - #openxt	aikidoka	Sounds like I will be breaking out grep later.  Question is how do we obtain those four items outside of the xen recipe....
+2014-11-17 08:32:18 - #openxt	rickl	we put XEN_SRC_URI etc. in .config rather than the OE recipe so that it could be used by the ubuntu tools build as well as OE
+2014-11-17 08:33:10 - #openxt	rickl	see pkg-xctools/build in openxt.git
+2014-11-17 08:34:06 - #openxt	aikidoka	rickl: thanks!  making a note for later.
+2014-11-17 08:35:53 - #openxt	rickl	np
+2014-11-17 09:05:13 - #openxt	aikidoka	alright.  fingers crossed....
+2014-11-17 09:19:12 - #openxt	aikidoka	chrisp__: Aiming to add in your xc-repo changes next.  :)
+2014-11-17 09:19:44 - #openxt	aikidoka	well, after I get all my other stuff done todya.
+2014-11-17 09:30:25 - #openxt	aikidoka	chrisp__: Is this your xc-repo stuff?  https://github.com/OpenXT/openxt/commit/2d8fafa4200bd7142d5de68992f5d95ede6696cb
+2014-11-17 09:37:41 - #openxt	chrisp___	   yeah, there were two parts
+2014-11-17 09:38:03 - #openxt	chrisp___	https://github.com/OpenXT/openxt/pull/36
+2014-11-17 09:38:12 - #openxt	chrisp___	https://github.com/OpenXT/xenclient-oe/pull/24
+2014-11-17 09:38:43 - #openxt	chrisp___	if you look up the related issue in the tracker, you can check out the "pull requests" link on the tickcet, which will show you which related pull requests were merged
+2014-11-17 09:39:39 - #openxt	aikidoka	ok.  Probably should have gone in via the tickets instead of looking through commits.  :-/

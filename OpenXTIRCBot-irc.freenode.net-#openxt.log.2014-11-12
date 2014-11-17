@@ -1,0 +1,54 @@
+2014-11-12 09:14:06 - #openxt	rphilipson	chrisp__1 hello
+2014-11-12 09:33:28 - #openxt	chrisp__1	yo good morning
+2014-11-12 09:45:09 - #openxt	chrisp__1	who wrote the pseudo xattr patch?
+2014-11-12 09:45:32 - #openxt	earl	ls
+2014-11-12 10:05:23 - #openxt	rphilipson	chrisp__1: the other day you brought up the idea of tickets being "in review" before being closed
+2014-11-12 10:05:48 - #openxt	rphilipson	which sounds reasonable
+2014-11-12 10:06:24 - #openxt	rphilipson	i am starting to have tickets in that state for USB and i would like to assign them the our QA
+2014-11-12 10:06:44 - #openxt	rphilipson	how should that work?
+2014-11-12 10:12:04 - #openxt	chrisp__1	good question
+2014-11-12 10:13:13 - #openxt	chrisp__1	first challenge is delivering them a complete build for each proposed fix (or set of fixes)
+2014-11-12 10:13:14 - #openxt	rphilipson	for one thing, the groups in JIRA (which I still don't really understand) do not cover QA
+2014-11-12 10:13:56 - #openxt	rphilipson	chrisp__1: yea and that is a bigger problem
+2014-11-12 10:14:11 - #openxt	chrisp__1	woot
+2014-11-12 10:14:18 - #openxt	chrisp__1	i think i figured out the selinux problems
+2014-11-12 10:15:26 - #openxt	chrisp__1	how did the XT team generate builds?
+2014-11-12 10:15:43 - #openxt	chrisp__1	they rely on an autobuilder to pump them out? or did they do it on their own dev box?
+2014-11-12 10:15:55 - #openxt	rphilipson	well we had a bunch of infrastructure that churned out builds when it saw changes in git repos
+2014-11-12 10:16:23 - #openxt	rphilipson	it was an autobuilder - buildbot stuffs etc.
+2014-11-12 10:18:44 - #openxt	chrisp__1	i was wondering how the issues like this selinux rebuild failure weren't a problem for the devs before :) 
+2014-11-12 10:19:24 - #openxt	kevin_home	I thought flihp was working on a buildbot. Don't know if he got as far as any ChangeSources
+2014-11-12 10:19:41 - #openxt	chrisp__1	openxt needs an autobuilder that can also handle jobs for pull requests
+2014-11-12 10:19:51 - #openxt	rphilipson	jed set up the buildbot stuff a while ago
+2014-11-12 10:19:59 - #openxt	kevin_home	I have one, but I work from a clean state on every build so wouldn't have hit the incremental build issue
+2014-11-12 10:20:04 - #openxt	rphilipson	i dont know if phil was using that or had something else
+2014-11-12 10:20:52 - #openxt	chrisp__1	i think when we talked he said it was based off jed's stuff, but i could be wrong
+2014-11-12 10:22:42 - #openxt	kevin_home	Buildbot (at least 0.9.8) can even post build status to GitHub
+2014-11-12 10:23:06 - #openxt	kevin_home	http://docs.buildbot.net/current/manual/cfg-statustargets.html#id20
+2014-11-12 10:24:08 - #openxt	chrisp__1	kevin_home: you have a builder thingy set up too, right? how do you have it set up?
+2014-11-12 10:25:12 - #openxt	rphilipson	chrisp__1: isn't jed out there - you should talk to him about what he had
+2014-11-12 10:25:28 - #openxt	rphilipson	i am just not sure where we can host any of this
+2014-11-12 10:25:44 - #openxt	kevin_home	Yeah, I have buildbot master, and buildslaves for: OpenXT main, SyncXT RPM, windows tools, OpenXT signing, and one for distribution (sending signed ISO, logs, etc to AIS)
+2014-11-12 10:26:42 - #openxt	kevin_home	Right now, I have every build manually triggered using ForceSchedulers so I can put in my own variables and such
+2014-11-12 10:27:19 - #openxt	kevin_home	And I tie the buildbot ID to the OpenXT and tools build IDs to keep them the same
+2014-11-12 10:27:49 - #openxt	kevin_home	Well, the actual buildbot job ID, not the ID of the buildbot itself
+2014-11-12 10:28:58 - #openxt	rickl	possibly related to the incremental build issue - the xt buildbot used to create a new build tree each time, but kept the sstate from the previous build (on the same branch) to avoid rebuilding stuff that hadn't changed
+2014-11-12 10:58:13 - #openxt	rphilipson	urrgg my home network is not up to being my development office
+2014-11-12 11:45:11 - #openxt	sirnarwhal	:/
+2014-11-12 11:45:18 - #openxt	sirnarwhal	I'm going to miss lunch with jed_home 
+2014-11-12 12:51:09 - #openxt	rphilipson	man our windows xenbus driver needs to be taken out back and shot...
+2014-11-12 13:54:47 - #openxt	cosmoecho_	rphilipson: I agree )
+2014-11-12 13:59:26 - #openxt	rphilipson	:)
+2014-11-12 14:28:19 - #openxt	zhalas	chrisp__1: I wrote the xattr patch long time ago. It's very ugly, but pseudo internals are pretty horrible. What about it?
+2014-11-12 14:48:54 - #openxt	chrisp__1	zhalas: i think i figured it out - https://github.com/OpenXT/xenclient-oe/pull/27
+2014-11-12 14:48:59 - #openxt	chrisp__1	if you would like to review it :)
+2014-11-12 14:50:27 - #openxt	chrisp__1	there is xattr support in the latest pseudo, I tried using that in the current build system, but that had its own oddball issue
+2014-11-12 14:53:40 - #openxt	chrisp__1	still has some leakage in the tables, but harmless enough for now, especially if we end up switching to the upstream supported version
+2014-11-12 14:59:01 - #openxt	zhalas	chrisp__1: yeah, file updates, removals etc are not working to well
+2014-11-12 15:02:18 - #openxt	zhalas	probably this constraint was to handle the cases where this patch does not work as expected
+2014-11-12 15:43:32 - #openxt	chrisp__1	yeah, I haven't seen any negative side effects of removing it, would you expect there to be any?
+2014-11-12 16:31:00 - #openxt	chrisp__1	you know what's awesome? partial rebuilds working, every time.
+2014-11-12 16:34:13 - #openxt	rphilipson	nice
+2014-11-12 16:34:21 - #openxt	rphilipson	i have never seen one of those
+2014-11-12 17:11:46 - #openxt	zhalas	chrisp__1: probably none, unless you introduce some strange file operation sequence that will make things to be mislabeled that will slip undetected
+2014-11-12 17:55:46 - #openxt	zhalas	I see that lookup by path is never used, so there shouldn't be any inconsistencies because of that change

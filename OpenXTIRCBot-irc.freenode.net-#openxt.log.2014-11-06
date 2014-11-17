@@ -1,0 +1,161 @@
+2014-11-06 08:50:44,080 - #openxt	bennettj	.t
+2014-11-06 08:51:24,391 - #openxt	aikidoka	dammit, we are being recorded!
+2014-11-06 08:51:48,877 - #openxt	bennettj	well, maybe. haha. phenny does not come with a logging module so I grabbed some random one off the internet. I'm not certain it is doing anything yet.
+2014-11-06 08:51:57,897 - #openxt	aikidoka	Was seeing if anybody was around about the scripts but I just found them.
+2014-11-06 08:52:28,638 - #openxt	bennettj	i take that back. we are for sure being recorded. haha.
+2014-11-06 08:52:37,208 - #openxt	aikidoka	But it looks like it just reads in the keyboard map in an ash script so not really sure why it thinks there is a parse error.
+2014-11-06 08:52:41,077 - #openxt	bennettj	now to figure out how often this thing rotates log files.
+2014-11-06 08:53:00,901 - #openxt	bennettj	yeah, i have never seen a problem at that step of the installer before. seems pretty strange.
+2014-11-06 08:53:13,637 - #openxt	aikidoka	The actual scripts are all the same size.
+2014-11-06 08:54:03,720 - #openxt	aikidoka	hmmm, both are busybox 1.13.2 but I have r26 and not r24.
+2014-11-06 08:54:17,546 - #openxt	aikidoka	I doubt there is a patch doing it.
+2014-11-06 08:54:42,249 - #openxt	aikidoka	so close!
+2014-11-06 09:04:10,376 - #openxt	bennettj	.weather
+2014-11-06 09:04:15,494 - #openxt	bennettj	.weather 13441
+2014-11-06 09:04:21,940 - #openxt	bennettj	stupid bot
+2014-11-06 09:04:31,903 - #openxt	bennettj	.weather rome, ny
+2014-11-06 09:04:40,785 - #openxt	bennettj	.weather london
+2014-11-06 09:04:54,374 - #openxt	bennettj	note to self: stop trying the useless bot functions.
+2014-11-06 09:05:51,574 - #openxt	aikidoka	hmmm, that's just checking the answer file.
+2014-11-06 09:06:01,317 - #openxt	aikidoka	.weather Baltimore
+2014-11-06 09:06:19,476 - #openxt	aikidoka	.weather FUBAR
+2014-11-06 09:09:19,251 - #openxt	bennettj	the site now requires each query to specify a username apparently. but somehow you have to register the username and they haven't made that process obvious.
+2014-11-06 09:13:09,910 - #openxt	bennettj	OpenXTIRCBot: reload weather
+2014-11-06 09:13:23,580 - #openxt	bennettj	.weather 13441
+2014-11-06 09:13:37,826 - #openxt	bennettj	.weather baltimore
+2014-11-06 09:13:41,608 - #openxt	bennettj	lol
+2014-11-06 09:24:37,905 - #openxt	bennettj	OpenXTIRCBot: reload weather
+2014-11-06 09:25:02,260 - #openxt	bennettj	.weather baltimore
+2014-11-06 09:25:23,148 - #openxt	sirnarwhal	ah wonderful
+2014-11-06 09:25:38,672 - #openxt	sirnarwhal	I'm glad the NSA is taking a more active role in supporting this project
+2014-11-06 09:25:44,162 - #openxt	sirnarwhal	.trivia
+2014-11-06 09:28:10,606 - #openxt	bennettj	OpenXTIRCBot: reload weather
+2014-11-06 09:28:12,923 - #openxt	bennettj	.weather baltimore
+2014-11-06 09:28:23,828 - #openxt	bennettj	oops
+2014-11-06 09:28:52,263 - #openxt	bennettj	.weather baltimore
+2014-11-06 09:28:54,292 - #openxt	bennettj	OpenXTIRCBot: reload weather
+2014-11-06 09:28:55,922 - #openxt	bennettj	.weather baltimore
+2014-11-06 09:29:06,827 - #openxt	bennettj	HAHA
+2014-11-06 09:29:13,941 - #openxt	bennettj	did that appear readable to anyone?
+2014-11-06 09:29:31,894 - #openxt	bennettj	.weather 13441
+2014-11-06 09:29:38,114 - #openxt	bennettj	.weather rome, ny
+2014-11-06 09:30:12,456 - #openxt	bennettj	ah, maybe it is readable, just for some reason it squishes the C for celsius against the , or )
+2014-11-06 09:30:24,013 - #openxt	bennettj	.weather baltimore, md
+2014-11-06 09:30:39,931 - #openxt	bennettj	well. now that i've devoted way too much time to that.
+2014-11-06 09:31:11,856 - #openxt	kevin_home	grrr
+2014-11-06 09:31:45,499 - #openxt	kevin_home	I hate being half-sick
+2014-11-06 09:31:56,691 - #openxt	kevin_home	Well enough to be at work, not well enough to be of any use
+2014-11-06 09:32:52,423 - #openxt	kevin_home	Looks like we have some new OpenXT partners in Altamira
+2014-11-06 09:32:55,070 - #openxt	kevin_home	That's awesome
+2014-11-06 09:32:57,079 - #openxt	dickonr	well enough to infect everyone through the air conditioning
+2014-11-06 09:36:23,004 - #openxt	chrisp__1	lol
+2014-11-06 09:46:05,981 - #openxt	bennettj	OpenXTIRCBot: reload weather
+2014-11-06 09:46:09,770 - #openxt	bennettj	OpenXTIRCBot: reload logger
+2014-11-06 09:46:11,959 - #openxt	bennettj	testing
+2014-11-06 09:46:11 - #openxt	bennettj	testing
+2014-11-06 09:46:34,754 - #openxt	bennettj	again
+2014-11-06 09:46:34 - #openxt	bennettj	again
+2014-11-06 09:47:10 - #openxt	bennettj	perhaps
+2014-11-06 09:47:21 - #openxt	kevin_home	Let me try one:
+2014-11-06 09:47:28 - #openxt	kevin_home	.fixmycode *
+2014-11-06 09:47:32 - #openxt	bennettj	haha
+2014-11-06 09:47:35 - #openxt	kevin_home	Nope, didn't work
+2014-11-06 10:22:53 - #openxt	bennettj	testing
+2014-11-06 11:13:23 - #openxt	chrisp__1	oxt-20 needs some testing love
+2014-11-06 11:14:46 - #openxt	chrisp__1	jed_home: you have any luck with that build?
+2014-11-06 11:15:10 - #openxt	jed_home	build successful \o/
+2014-11-06 11:15:35 - #openxt	jed_home	now I need a laptop to test it...
+2014-11-06 11:16:24 - #openxt	aikidoka	.fetchmybeer
+2014-11-06 11:17:21 - #openxt	aikidoka	So loadkeys is failing to load the keymap in my installer
+2014-11-06 11:17:32 - #openxt	aikidoka	trying to find a way to test it outside of the installer, unsuccessfully.
+2014-11-06 11:49:04 - #openxt	chrisp__1	rphilipson: what did your debug environment look like when debugging tboot issues?
+2014-11-06 11:52:47 - #openxt	rphilipson	mostly serial output
+2014-11-06 11:53:10 - #openxt	rphilipson	one of the patches adds express card serial support but it is incomplete
+2014-11-06 11:53:31 - #openxt	rphilipson	sometimes i had to hack up grub when i needed pre-tboot information
+2014-11-06 11:54:14 - #openxt	rphilipson	as far as what happens in the ACMs, that is tough though i was able to disasm them and figure bits out here and there
+2014-11-06 11:54:47 - #openxt	jed_home	btw chrisp__1, my build of your stuff installed and ran fine, let me know if you want more testing
+2014-11-06 11:55:06 - #openxt	chrisp__1	thanks! i think i need merging now :)
+2014-11-06 11:55:20 - #openxt	chrisp__1	that will make life much easier
+2014-11-06 11:55:59 - #openxt	jed_home	https://github.com/OpenXT/openxt/pull/36  and  https://github.com/OpenXT/xenclient-oe/pull/24  ?
+2014-11-06 12:00:33 - #openxt	chrisp__1	looks like 'em
+2014-11-06 12:01:03 - #openxt	jed_home	done
+2014-11-06 12:02:10 - #openxt	chrisp__1	nicely done, you gonna update the ticket? :) thanks
+2014-11-06 12:02:12 - #openxt	jed_home	now, what's the best way to tell people that they need to change their build tree and .config to continue building OpenXT? :p
+2014-11-06 12:02:35 - #openxt	jed_home	heading to the ticket now
+2014-11-06 12:02:37 - #openxt	chrisp__1	that's what i was just wondering
+2014-11-06 12:02:40 - #openxt	chrisp__1	i copied that info into the ticket
+2014-11-06 12:02:52 - #openxt	chrisp__1	i think IRC is probably the best bet!
+2014-11-06 12:03:25 - #openxt	jed_home	I don't seem to be allowed to do anything to the ticket...
+2014-11-06 12:03:32 - #openxt	chrisp__1	so for anyone that's going to be updating their xenclient-oe anytime soon
+2014-11-06 12:03:35 - #openxt	chrisp__1	OPENXT_GIT_MIRROR needs to be re-defined to github.com/OpenXT instead of git://github.com/OpenXT
+2014-11-06 12:03:38 - #openxt	chrisp__1	OPENXT_GIT_PROTOCOL needs to be defined as "git"|"https"
+2014-11-06 12:03:38 - #openxt	chrisp__1	You can make the mods in your local.conf as well as want to edit your .config for future use.
+2014-11-06 12:03:42 - #openxt	chrisp__1	OPENXT_BRANCH needs to be defined as "master"
+2014-11-06 12:03:47 - #openxt	chrisp__1	jed_home: i'll check your groups
+2014-11-06 12:05:26 - #openxt	chrisp__1	check now?
+2014-11-06 12:06:09 - #openxt	jed_home	a button saying "Done" popped up, so I clicked on it, looks happy :)
+2014-11-06 12:06:40 - #openxt	jed_home	did you fix the example config file?
+2014-11-06 12:14:00 - #openxt	chrisp__1	yeah
+2014-11-06 12:14:40 - #openxt	chrisp__1	https://github.com/cjp256/openxt/commit/f960b794e4aab084ef9b713d221f8853b12f9bfc
+2014-11-06 12:15:16 - #openxt	jed_home	well https://github.com/OpenXT/openxt/commit/f960b794e4aab084ef9b713d221f8853b12f9bfc
+2014-11-06 12:15:17 - #openxt	jed_home	:p
+2014-11-06 12:16:28 - #openxt	chrisp__1	yes, thanks for that!
+2014-11-06 12:16:37 - #openxt	chrisp__1	you can test oxt-20 if you are feeling brave now
+2014-11-06 12:16:40 - #openxt	chrisp__1	that's an easy one
+2014-11-06 12:17:52 - #openxt	jed_home	ok I'll have a look
+2014-11-06 12:18:13 - #openxt	jed_home	I'm buying a house at the same time, so (slow) testing is pretty much all I can do ^^
+2014-11-06 12:20:39 - #openxt	jed_home	chrisp__1, [oxt-20] the whole pq applies without any complaint?!
+2014-11-06 12:21:40 - #openxt	rphilipson	guilt tends to hide warning and fuzzies doesnt it?
+2014-11-06 12:22:11 - #openxt	jed_home	does, as long as everything applies somehow :)
+2014-11-06 12:22:29 - #openxt	rphilipson	somehow :)
+2014-11-06 12:34:37 - #openxt	jed_home	chrisp__1, could you rebase oxt-20-v2?
+2014-11-06 12:53:29 - #openxt	chrisp__1	sure
+2014-11-06 12:54:28 - #openxt	chrisp__1	but it's still mergeable, does it really need to be rebased?
+2014-11-06 12:55:33 - #openxt	chrisp__1	the end result should be the same, unless i'm missing something
+2014-11-06 13:28:43 - #openxt	jed_home	chrisp__1, the idea was just to build with cjp256/openxt:oxt-20-v2 in place of openxt/openxt:master to test a whole build
+2014-11-06 13:39:37 - #openxt	chrisp__1	oh ok
+2014-11-06 13:39:53 - #openxt	chrisp__1	give me a few minutes
+2014-11-06 13:57:35 - #openxt	chrisp__1	jed_home: you gonna test from a clean slate?
+2014-11-06 13:58:04 - #openxt	chrisp__1	if not, you just need to update your local.conf with the bits in the common-config
+2014-11-06 13:58:52 - #openxt	jed_home	yeah from scratch
+2014-11-06 14:00:04 - #openxt	chrisp__1	https://github.com/OpenXT/openxt/pull/39
+2014-11-06 14:02:32 - #openxt	jed_home	building
+2014-11-06 14:02:42 - #openxt	chrisp__1	excellent, thanks
+2014-11-06 15:21:05 - #openxt	chrisp__1	i'll tell you what
+2014-11-06 15:21:11 - #openxt	chrisp__1	these bash patches are a PITA
+2014-11-06 15:29:19 - #openxt	rphilipson	nutz my bluray/dvd usb drive is busted
+2014-11-06 15:31:22 - #openxt	jed_home	oh
+2014-11-06 15:31:25 - #openxt	jed_home	sucks
+2014-11-06 15:31:30 - #openxt	jed_home	it was pretty recent
+2014-11-06 15:31:39 - #openxt	chrisp__1	really wasnt too bad actually
+2014-11-06 15:31:56 - #openxt	chrisp__1	there were just patches that apparently had been applied w/o cve references
+2014-11-06 15:32:01 - #openxt	chrisp__1	thank you OE dylan
+2014-11-06 15:37:55 - #openxt	aikidoka	dizzy (1.7) is out now.
+2014-11-06 15:39:51 - #openxt	chrisp__1	yeah, but they updated to bash 4.3
+2014-11-06 15:40:02 - #openxt	chrisp__1	dylan is still maintained with bash 4.2 :)
+2014-11-06 15:43:27 - #openxt	aikidoka	is 4.3 an issue?
+2014-11-06 15:43:46 - #openxt	rphilipson	jed_home: yea i think the funky wire connection to the enclosure got busted
+2014-11-06 15:43:47 - #openxt	aikidoka	daisy is 4.3 also.
+2014-11-06 15:44:02 - #openxt	chrisp__1	we are using 4.2
+2014-11-06 15:45:02 - #openxt	chrisp__1	we'll uprev when you do ;)
+2014-11-06 15:51:01 - #openxt	aikidoka	just wondering if there were known issues as mine is building with bash 4.3 right now
+2014-11-06 15:53:05 - #openxt	aikidoka	hmmm, my console-tools version matches what we had before.  Wonder why loadkeys claims there is parse error
+2014-11-06 15:58:57 - #openxt	chrisp__1	i doubt there would be issues with 4.3, I just didn't want to uprev it for no reason (4.3 would need the patches too anyways)
+2014-11-06 16:05:40 - #openxt	aikidoka	hmmm, I could have lost loadkeys's ability to deal with gz files
+2014-11-06 16:08:36 - #openxt	chrisp__1	oh AUTOREV... here I am just doing my build, minding my own business, and all of a sudden, i gotta recompile all my kernels. :)
+2014-11-06 16:18:06 - #openxt	aikidoka	ha ha
+2014-11-06 16:18:06 - #openxt	aikidoka	got get some coffee.
+2014-11-06 16:18:09 - #openxt	aikidoka	go
+2014-11-06 16:18:25 - #openxt	aikidoka	I have to recompile console-tools
+2014-11-06 17:05:36 - #openxt	chrisp__1	well unless the incremental build went foobar, this openxt install is not happy with the fixed bash. gonna be a long coffee break for a fresh build...
+2014-11-06 17:08:26 - #openxt	aikidoka	yeah, my console-tools stuff didn't fix loadkeys either
+2014-11-06 17:18:21 - #openxt	chrisp__1	:(
+2014-11-06 18:46:38 - #openxt	aikidoka	Need to compare compiler options I guess.  Or copy the binary out of the working version to see if that makes it work.
+2014-11-06 21:04:55 - #openxt	chrisp__1	aikidoka: yeah 4.3 is vuln but daisy&dizzy has the patches applied - are your bits based on daisy or dizzy?
+2014-11-06 21:11:35 - #openxt	aikidoka	daisy
+2014-11-06 21:11:54 - #openxt	aikidoka	But at the moment more concerned with it actually working!!!
+2014-11-06 21:11:56 - #openxt	aikidoka	:-/
+2014-11-06 21:12:07 - #openxt	aikidoka	going to copy the original loadkeys
+2014-11-06 22:59:43 - #openxt	aikidoka	success!
+2014-11-06 22:59:52 - #openxt	aikidoka	Had to ditch console-tools for kbd
+2014-11-06 23:00:26 - #openxt	aikidoka	now I need to finish the initscripts work before even bothering with installs.
