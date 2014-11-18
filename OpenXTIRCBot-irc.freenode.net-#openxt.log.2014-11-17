@@ -1,0 +1,217 @@
+2014-11-17 07:24:49 - #openxt	j105rob	earl: https://github.com/j105rob/scripts/blob/master/replicate_github.py
+2014-11-17 07:25:25 - #openxt	j105rob	^^ oh, and for anyone else who is looking to create a clone of all the repos under OpenXT
+2014-11-17 07:25:48 - #openxt	j105rob	might need some tweaking and I cannot take credit for the original code
+2014-11-17 07:25:58 - #openxt	j105rob	but my google-fu is awesome.
+2014-11-17 08:20:18 - #openxt	aikidoka	chrisp__?
+2014-11-17 08:22:06 - #openxt	chrisp___	good morning
+2014-11-17 08:22:52 - #openxt	chrisp___	aikidoka: whats up
+2014-11-17 08:24:42 - #openxt	aikidoka	my bed head
+2014-11-17 08:25:14 - #openxt	aikidoka	Did the uprev to Xen 4.3.3 happen in a way that I need to uprev also?
+2014-11-17 08:25:31 - #openxt	aikidoka	Was it a recipe addition or change to our other git repos?
+2014-11-17 08:26:01 - #openxt	aikidoka	Checking a build issue and looks like a Xen patch queue failure is next to look at.
+2014-11-17 08:26:22 - #openxt	bennettj	updated environment vars in common-config, which gets replicated to local.conf when you do the "setupoe" step in do_build.sh
+2014-11-17 08:26:36 - #openxt	chrisp___	i believe it was just a change in openxt.git... common-config
+2014-11-17 08:27:11 - #openxt	bennettj	see here: https://github.com/OpenXT/openxt/pull/39
+2014-11-17 08:27:22 - #openxt	bennettj	check the commits for the diff, it's like 4 variables.
+2014-11-17 08:27:53 - #openxt	chrisp___	to fix your current build tree, you just need to update your local.conf with the values from common-config
+2014-11-17 08:27:56 - #openxt	aikidoka	Ah ok.  So nothing changed elsewhere.
+2014-11-17 08:28:07 - #openxt	aikidoka	my apply patch queue issue is unrelated.
+2014-11-17 08:28:22 - #openxt	aikidoka	But looks like I can easily change to Xen 4.3.3.
+2014-11-17 08:28:52 - #openxt	aikidoka	Are those variables used elsewhere?  Seems odd to have them in that config instead of in the recipe.
+2014-11-17 08:29:51 - #openxt	chrisp___	we merged in the XSAs to the xen pq, and it may not apply cleanly on 4.3.2
+2014-11-17 08:30:28 - #openxt	chrisp___	aikidoka:  i agree, but they are used in a few spots, so I am saving that cleanup for later
+2014-11-17 08:30:38 - #openxt	chrisp___	feel free :)
+2014-11-17 08:31:27 - #openxt	aikidoka	gotcha.  So it will affect my patch queue.  Easy enough fix on that one then!
+2014-11-17 08:32:00 - #openxt	aikidoka	Sounds like I will be breaking out grep later.  Question is how do we obtain those four items outside of the xen recipe....
+2014-11-17 08:32:18 - #openxt	rickl	we put XEN_SRC_URI etc. in .config rather than the OE recipe so that it could be used by the ubuntu tools build as well as OE
+2014-11-17 08:33:10 - #openxt	rickl	see pkg-xctools/build in openxt.git
+2014-11-17 08:34:06 - #openxt	aikidoka	rickl: thanks!  making a note for later.
+2014-11-17 08:35:53 - #openxt	rickl	np
+2014-11-17 09:05:13 - #openxt	aikidoka	alright.  fingers crossed....
+2014-11-17 09:19:12 - #openxt	aikidoka	chrisp__: Aiming to add in your xc-repo changes next.  :)
+2014-11-17 09:19:44 - #openxt	aikidoka	well, after I get all my other stuff done todya.
+2014-11-17 09:30:25 - #openxt	aikidoka	chrisp__: Is this your xc-repo stuff?  https://github.com/OpenXT/openxt/commit/2d8fafa4200bd7142d5de68992f5d95ede6696cb
+2014-11-17 09:37:41 - #openxt	chrisp___	   yeah, there were two parts
+2014-11-17 09:38:03 - #openxt	chrisp___	https://github.com/OpenXT/openxt/pull/36
+2014-11-17 09:38:12 - #openxt	chrisp___	https://github.com/OpenXT/xenclient-oe/pull/24
+2014-11-17 09:38:43 - #openxt	chrisp___	if you look up the related issue in the tracker, you can check out the "pull requests" link on the tickcet, which will show you which related pull requests were merged
+2014-11-17 09:39:39 - #openxt	aikidoka	ok.  Probably should have gone in via the tickets instead of looking through commits.  :-/
+2014-11-17 09:56:39 - #openxt	rphilipson	aikidoka: hi
+2014-11-17 10:01:57 - #openxt	aikidoka	rphilipson: sup homeslice?
+2014-11-17 10:02:22 - #openxt	aikidoka	wait, is homeslice two works?  my slang is whack
+2014-11-17 10:02:53 - #openxt	rphilipson	well we need to go to  the authoritative source on that...
+2014-11-17 10:03:17 - #openxt	rphilipson	http://www.urbandictionary.com/define.php?term=Homeslice&utm_source=search-action
+2014-11-17 10:03:23 - #openxt	rphilipson	looks like you are correct
+2014-11-17 10:03:30 - #openxt	aikidoka	My dictionary of American Slang is from the 80s.  And I might have tossed it actually
+2014-11-17 10:03:48 - #openxt	rphilipson	thank goodness we have urban...
+2014-11-17 10:03:51 - #openxt	aikidoka	ha ha
+2014-11-17 10:04:54 - #openxt	rphilipson	anyway homeskillet...i tried to answer you licensing questions
+2014-11-17 10:07:20 - #openxt	aikidoka	Thanks!
+2014-11-17 10:08:32 - #openxt	aikidoka	That should cover it.
+2014-11-17 10:08:40 - #openxt	rphilipson	did i answer your question?
+2014-11-17 10:08:48 - #openxt	aikidoka	I believe so.
+2014-11-17 10:08:57 - #openxt	rphilipson	coolio
+2014-11-17 10:09:16 - #openxt	rphilipson	chrisp___: hi
+2014-11-17 10:23:27 - #openxt	rphilipson	chrisp___: i noticed we now have some rather big file/dir names in the build
+2014-11-17 10:23:27 - #openxt	rphilipson	linux-xenclient-dom0-3.11+git1+fea51993f9b20f44a9e8e8bbc9f7c78fa72a74fd-r0
+2014-11-17 10:23:36 - #openxt	rphilipson	is this due to the changes to OXT-10?
+2014-11-17 10:24:35 - #openxt	brendan__	I think he's in a meeting, but yeah it is
+2014-11-17 10:25:26 - #openxt	rphilipson	ok, we've run into build bustage due to really long paths in the past
+2014-11-17 11:25:45 - #openxt	chrisp___	rphilipson: yes
+2014-11-17 11:25:55 - #openxt	chrisp___	the package version includes the git tags
+2014-11-17 11:26:09 - #openxt	chrisp___	it's the way to reliably ensure that the package is rebuilt when the source changes
+2014-11-17 11:26:35 - #openxt	chrisp___	as SRCREV is set to AUTOREV
+2014-11-17 11:27:24 - #openxt	rphilipson	ok that is fine - just wanted to point out we have blown gaskets on paths being too long in the past
+2014-11-17 11:27:41 - #openxt	rphilipson	and i dont think it is immediately obvious what went wrong
+2014-11-17 11:27:46 - #openxt	rphilipson	just to bear in mind
+2014-11-17 11:27:50 - #openxt	chrisp___	roger that
+2014-11-17 11:33:52 - #openxt	chrisp___	rphilipson: i rebuilt dom0 with the change you described to badsyntax - and disabled vtd - just to test and see if that's what's bricking the broadcom support
+2014-11-17 11:34:08 - #openxt	chrisp___	no dice
+2014-11-17 11:34:39 - #openxt	rphilipson	:/
+2014-11-17 11:34:51 - #openxt	chrisp___	so now im gonna try to put the drivers back in dom0
+2014-11-17 11:34:58 - #openxt	chrisp___	is that all you did, strip the drivers out?
+2014-11-17 11:35:20 - #openxt	rphilipson	and change it so it does not FLR the cards on the first pass through
+2014-11-17 11:35:32 - #openxt	rphilipson	that fixed a bunch of them
+2014-11-17 11:35:48 - #openxt	rphilipson	well when i say it "fixed" them, it fixed the symptom
+2014-11-17 11:36:27 - #openxt	rphilipson	and one could see why it would but it was not something easily diagnosed
+2014-11-17 11:37:04 - #openxt	chrisp___	how would i go about re-instating FLR?
+2014-11-17 11:37:53 - #openxt	rphilipson	lemme check what tomasz changed - it is prolly just a bit of state machine in the toolstack
+2014-11-17 11:46:53 - #openxt	rphilipson	chrisp___: ygm
+2014-11-17 12:04:08 - #openxt	aikidoka	rphilipson: We could always control the unpack directories to shorten the names.
+2014-11-17 12:10:45 - #openxt	rphilipson	 aikidoka: sure - anything along those lines
+2014-11-17 12:11:03 - #openxt	rphilipson	i just wanted to throw it out there so people were aware of it
+2014-11-17 12:29:51 - #openxt	rphilipson	ericch: Environment.Exit() worked - you Da .NET MAN!
+2014-11-17 12:29:59 - #openxt	ericch	naaaaaaaaaaaaaaawwwwwwwwwwww
+2014-11-17 12:50:06 - #openxt	masterb	\o/ we finally have a .NET man!!
+2014-11-17 12:51:28 - #openxt	rphilipson	all hail Eric "Mr .NET" Chanudet!!!!!!
+2014-11-17 12:51:32 - #openxt	rphilipson	\o/
+2014-11-17 12:52:29 - #openxt	ericch	ACTION chokes and die
+2014-11-17 12:58:57 - #openxt	aikidoka	ericch: You can't get away that easily
+2014-11-17 12:59:48 - #openxt	rphilipson	yea you will die and go to hell and .NET will be waiting for you there...
+2014-11-17 13:02:14 - #openxt	ericch	I was afraid you'd bring me back and bind my soul to a windows dev VM
+2014-11-17 13:02:32 - #openxt	rphilipson	we can do that too
+2014-11-17 13:04:23 - #openxt	ericch	I'll haunt your nights ! (CET is a good timezone to haunt US resident)
+2014-11-17 13:04:43 - #openxt	aikidoka	ericch is the ghost in the machine...
+2014-11-17 13:04:48 - #openxt	ericch	:D
+2014-11-17 13:24:35 - #openxt	chrisp___	hrmm
+2014-11-17 13:25:00 - #openxt	chrisp___	so i put network  drivers back in dom0, unbind tg3 nic from pciback, nic works fine in dom0
+2014-11-17 13:25:14 - #openxt	chrisp___	startup ndvm, crap packet data
+2014-11-17 13:25:33 - #openxt	chrisp___	destroy, unbind, still works fine in dom0
+2014-11-17 13:34:54 - #openxt	chrisp___	doing a flr manually, no dice there too
+2014-11-17 13:34:55 - #openxt	chrisp___	:(
+2014-11-17 14:05:06 - #openxt	rphilipson	sounds like dma remapping is hosing things
+2014-11-17 14:05:15 - #openxt	rphilipson	did you try ndvm w/o iommu yet?
+2014-11-17 14:11:42 - #openxt	chrisp___	yeah
+2014-11-17 14:11:46 - #openxt	chrisp___	currently running w/o vtd
+2014-11-17 14:12:10 - #openxt	chrisp___	intel nic (onboard and external) work fine
+2014-11-17 14:12:21 - #openxt	chrisp___	tg3 is junked up
+2014-11-17 14:12:32 - #openxt	rphilipson	what the glob
+2014-11-17 14:13:00 - #openxt	chrisp___	glob?
+2014-11-17 14:14:27 - #openxt	rphilipson	http://adventuretime.wikia.com/wiki/Grob_Gob_Glob_Grod
+2014-11-17 14:16:02 - #openxt	aikidoka	anybody want to do an install, boot and look at the serial output?  :-)
+2014-11-17 14:16:39 - #openxt	aikidoka	doh!  except I deleted the build-output dir and need to wait for it to finish all the images and make the iso.  dammit.
+2014-11-17 14:20:30 - #openxt	chrisp___	you order your serial cable yet?
+2014-11-17 14:21:16 - #openxt	aikidoka	just what are you implying?  O:-)
+2014-11-17 14:23:05 - #openxt	aikidoka	Wow, found a $25 one.  that's just wrong
+2014-11-17 14:23:05 - #openxt	chrisp___	i can do it for ya
+2014-11-17 14:23:21 - #openxt	chrisp___	if you promise to order one ;)
+2014-11-17 14:23:39 - #openxt	aikidoka	adding some to the cart now
+2014-11-17 14:23:54 - #openxt	aikidoka	want to make sure to get low profile and normal, plus one extra
+2014-11-17 14:24:39 - #openxt	aikidoka	screw it, will just do two of each.  $4 a pop about
+2014-11-17 14:24:43 - #openxt	chrisp___	they just cables to your onboard header?
+2014-11-17 14:25:06 - #openxt	aikidoka	yep
+2014-11-17 14:25:21 - #openxt	aikidoka	I thought I still had some but I think I finally threw them out after 12+ years
+2014-11-17 14:25:52 - #openxt	aikidoka	I need to hang one out of the AIO, put one in the Tiny, and then have one more Asus system I can assemble.
+2014-11-17 15:12:20 - #openxt	rphilipson	sirnarwhal: i think i finally have a repro of your crash
+2014-11-17 15:12:48 - #openxt	rphilipson	USB crash that is
+2014-11-17 15:40:30 - #openxt	sirnarwhal	wheeeee
+2014-11-17 15:43:54 - #openxt	chrisp___	tg3 works in hvm guest, but not pv.  any good ideas to test an hvm version of the ndvm? :)
+2014-11-17 15:45:53 - #openxt	kevin_home	The same tigon3 version from the NDVM works in the HVM guest?
+2014-11-17 15:46:09 - #openxt	kevin_home	Or you switching a guest between HVM/PVM?
+2014-11-17 15:46:24 - #openxt	chrisp___	i just passed it through to an ubuntu guest just fine
+2014-11-17 15:46:32 - #openxt	chrisp___	but the ndvm is not playing nice with it
+2014-11-17 15:49:07 - #openxt	chrisp___	i'd like to have all other factors be equal (make an hvm-ish ndvm) and see whats up
+2014-11-17 15:50:45 - #openxt	sirnarwhal	rphilipson: what'd you try?
+2014-11-17 15:51:00 - #openxt	kevin_home	Create an HVM that points to the NDVM VHD and try that?
+2014-11-17 15:51:35 - #openxt	kevin_home	Or change to a PVM Ubuntu
+2014-11-17 16:02:37 - #openxt	aikidoka	The normal ubuntu kernel should already have the PV stuff on in the kernel.  I think you would just need to change the VM config and maybe specify the kernel to use (had to with XenServer).
+2014-11-17 16:07:57 - #openxt	chrisp___	so i hacked up the xt installer, booted that ;)
+2014-11-17 16:08:01 - #openxt	chrisp___	close enough to the ndvm image
+2014-11-17 16:08:06 - #openxt	chrisp___	passthrough works fine
+2014-11-17 16:56:36 - #openxt	rphilipson	sirnarwhal: i rebooted with a device assigned to a vm
+2014-11-17 16:56:53 - #openxt	rphilipson	i was able to do it twice now
+2014-11-17 16:57:48 - #openxt	rphilipson	so i am trying it now with a bunch of tracing in place
+2014-11-17 16:57:59 - #openxt	rphilipson	like i did for the oops
+2014-11-17 17:03:18 - #openxt	aikidoka	chrisp__: My ship recipe is now building.  Should have an ISO to upload soon.
+2014-11-17 17:07:37 - #openxt	rphilipson	chrisp___: i take it there is nothing traced anywhere that even gives you a clue?
+2014-11-17 17:14:13 - #openxt	aikidoka	Well Dropbox, I didn't really want you to work.  sheesh
+2014-11-17 17:19:07 - #openxt	aikidokatech_bld	chrisp__: https://drive.google.com/file/d/0B42sZ_dTDSijQUlVZjIzanlYN0U/view?usp=sharing
+2014-11-17 17:20:44 - #openxt	chrisp___	rphilipson: yeah, i enabled debug logging in rsyslog
+2014-11-17 17:21:01 - #openxt	chrisp___	thinking maybe my change to xenmgr didn't take effect
+2014-11-17 17:21:26 - #openxt	chrisp___	although then i'm not quite sure how it worked when I turned off vtd tho
+2014-11-17 17:22:00 - #openxt	chrisp___	so gonna go back through the tests again lining up the xenmgr output, make sure they were valid
+2014-11-17 17:24:54 - #openxt	rphilipson	one other possibility - maybe you are missing something in the ndvm kernel that your other vms have
+2014-11-17 17:25:03 - #openxt	rphilipson	like a network related module or setting
+2014-11-17 17:25:20 - #openxt	rphilipson	could compare configs...just a thought
+2014-11-17 17:26:24 - #openxt	rphilipson	my guess is we stripped the ndvm kernel down as much as possible
+2014-11-17 17:33:37 - #openxt	chrisp___	aikidokatech_bld: lvm errors
+2014-11-17 17:35:03 - #openxt	aikidoka	anything about /var/lock?
+2014-11-17 17:36:34 - #openxt	chrisp___	yeah
+2014-11-17 17:36:40 - #openxt	chrisp___	you are missing /run/lock
+2014-11-17 17:36:49 - #openxt	aikidoka	must be more than one volitiles file.  only got one of them
+2014-11-17 17:36:57 - #openxt	chrisp___	/var/lock is a symlink to ../run/lock == /run/lock, which is mia
+2014-11-17 17:36:58 - #openxt	aikidoka	GitHub makes me look like a busy bee.  "Sorry, we could not display the entire diff because too many files (715) changed."
+2014-11-17 17:37:07 - #openxt	sirnarwhal	nice ak
+2014-11-17 17:37:09 - #openxt	sirnarwhal	nice aikidoka 
+2014-11-17 17:37:45 - #openxt	chrisp___	you could just do a mkdir /run/lock for now me thinks
+2014-11-17 17:37:50 - #openxt	aikidoka	hmm, there really is only one volatiles file
+2014-11-17 17:38:09 - #openxt	aikidoka	populate-volatiles.sh should be making it per /etc/default/volatiles/00_core
+2014-11-17 17:38:28 - #openxt	chrisp___	this is your ramdiisk
+2014-11-17 17:38:44 - #openxt	aikidoka	question is, is that the dom0 rootfs or sysrootfs?
+2014-11-17 17:39:10 - #openxt	chrisp___	there is no 00 or populate volatiles in the ramdisk
+2014-11-17 17:39:53 - #openxt	chrisp___	just add the mkdir /run/lock ;0
+2014-11-17 17:40:23 - #openxt	aikidoka	but the question is how was it made before and why does it not work now.
+2014-11-17 17:40:33 - #openxt	aikidoka	Do you know how the ramdisk is populated?
+2014-11-17 17:40:35 - #openxt	chrisp___	and good news!
+2014-11-17 17:40:46 - #openxt	chrisp___	then you get a dom0 terminal :)
+2014-11-17 17:40:58 - #openxt	chrisp___	yeah, everything is in the init script
+2014-11-17 17:43:59 - #openxt	chrisp___	the older lvm command may not have failed without /var/lock present
+2014-11-17 17:45:31 - #openxt	chrisp___	or may have been installed by some other package
+2014-11-17 17:45:49 - #openxt	aikidoka	don't think I bumped lvm.
+2014-11-17 17:45:52 - #openxt	chrisp___	looking at it, actually, /var/lock is not a symlink, and ships with ./subsys
+2014-11-17 17:45:59 - #openxt	chrisp___	so it was already present
+2014-11-17 17:46:27 - #openxt	chrisp___	xenclient/recipes/base-files/base-files_3.0.14.bb
+2014-11-17 17:47:21 - #openxt	chrisp___	that ships it
+2014-11-17 17:49:08 - #openxt	aikidoka	yeah, but upstream base-files does not.  Populate-volatiles.sh will create it as a symlink to /run/lock, which is made per reading the 00_core file.
+2014-11-17 17:49:26 - #openxt	aikidoka	question is, why did it not for that.
+2014-11-17 17:50:06 - #openxt	chrisp___	populate-volatiles doesn't exist in the ramdisk
+2014-11-17 17:50:27 - #openxt	aikidoka	but should it?
+2014-11-17 17:50:27 - #openxt	chrisp___	dom0 image, sure
+2014-11-17 17:50:38 - #openxt	aikidoka	looking for the ramdisk creation stuff
+2014-11-17 17:52:11 - #openxt	chrisp___	no i don't think so. i think populate-volatiles is usually kicked off as an init script
+2014-11-17 17:53:46 - #openxt	aikidoka	it is
+2014-11-17 17:54:10 - #openxt	aikidoka	Is the script that creates the ramdisk in the dom0 rootfs?
+2014-11-17 17:54:24 - #openxt	aikidoka	I don't actually know the different between the dom0 image and the sysroot image
+2014-11-17 17:54:24 - #openxt	chrisp___	the /init is meant to be fairly lean and mean, just get it to the next stage in the boot process (where you have nice things like init scripts.  there's no foul in just doing the mkdir -p :P
+2014-11-17 17:55:24 - #openxt	aikidoka	But the original dom0 does not have a /init in its rootfs dir
+2014-11-17 17:56:10 - #openxt	chrisp___	./recipes/initrdscripts/initramfs-xenclient/init.sh
+2014-11-17 17:56:10 - #openxt	aikidoka	So if it is missing because I did not pick up something in the build I want to try and fix that instead of doing a mkdir.
+2014-11-17 17:56:19 - #openxt	aikidoka	oh, initramfs
+2014-11-17 17:56:22 - #openxt	chrisp___	ya
+2014-11-17 17:57:05 - #openxt	aikidoka	time to break out Meld.  But I'm sure I did not touch that file
+2014-11-17 17:57:34 - #openxt	aikidoka	which means it is just the following of base-files upstream that did it.
+2014-11-17 17:57:44 - #openxt	aikidoka	and that makes sense, but I want to be sure.
+2014-11-17 18:02:51 - #openxt	chrisp___	good luck, have a good night :)
+2014-11-17 18:03:00 - #openxt	aikidoka	but but
+2014-11-17 18:03:19 - #openxt	aikidoka	got an fstab issue for tomorrow I think
+2014-11-17 18:03:24 - #openxt	chrisp___	just update your init.sh and enjoy your dom0 terminal and your new problems that don't require a serial cable :)
+2014-11-17 18:03:58 - #openxt	aikidoka	will do
+2014-11-17 18:04:22 - #openxt	aikidoka	then will see if we are mounting /var/run as /run even though another package links /var/run to /run
+2014-11-17 18:07:01 - #openxt	chrisp___	if it makes you feel better
+2014-11-17 18:08:20 - #openxt	chrisp___	i just validated that base-files is providing /var/lock/subsys in the xenclient-installer-image
+2014-11-17 18:08:27 - #openxt	chrisp___	out of my build tree
+2014-11-17 18:09:15 - #openxt	aikidoka	different base-files recipe than upstream. 
+2014-11-17 18:09:47 - #openxt	aikidoka	I thought about appending in the stuff to create it but I didn't want it to affect the other script.
+2014-11-17 18:31:50 - #openxt	aikidoka	yeah, we bind mount to point /run to /var/run but then /var/run is a symlink to /run
+2014-11-17 23:10:51 - #openxt	aikidoka	chrisp__: Looks like --ignorelockingfailure did the trick.
+2014-11-17 23:11:01 - #openxt	aikidoka	lovely dom0 prompt
