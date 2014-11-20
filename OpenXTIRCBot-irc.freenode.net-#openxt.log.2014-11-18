@@ -1,0 +1,545 @@
+2014-11-18 08:31:17 - #openxt	rphilipson	good morning
+2014-11-18 08:32:07 - #openxt	aikidoka	ugh
+2014-11-18 08:33:51 - #openxt	kevin_home	Hellos
+2014-11-18 09:02:06 - #openxt	chrisp___	good mornin
+2014-11-18 09:03:45 - #openxt	aikidoka	The dom0 prompt just stares at me laughing...
+2014-11-18 09:11:34 - #openxt	aikidoka	But at least it boots!
+2014-11-18 09:14:30 - #openxt	chrisp___	haha
+2014-11-18 09:14:39 - #openxt	chrisp___	xec-vm worked
+2014-11-18 09:24:22 - #openxt	aikidoka	yep.  both stopped
+2014-11-18 09:25:05 - #openxt	aikidoka	I think before I went to bed I noticed the xenmgr script should be starting them.
+2014-11-18 10:08:46 - #openxt	rphilipson	cosmoecho_: hiya
+2014-11-18 10:10:06 - #openxt	cosmoecho_	rphilipson, hi Ross! 
+2014-11-18 10:10:29 - #openxt	cosmoecho_	rphilipson, how is usb stuff going?
+2014-11-18 10:12:06 - #openxt	rphilipson	chasing down a hideous crash - but i think i am close to figuring it out
+2014-11-18 10:12:38 - #openxt	rphilipson	i think it was introduced by us to deal with x86 dom0 differences
+2014-11-18 10:13:02 - #openxt	rphilipson	by code we added to deal with x86 diffs vs. XCE's x64 dom0
+2014-11-18 10:14:00 - #openxt	cosmoecho_	ok, nice. Looks like I wont be able to upstream usbback from within Citrix :)
+2014-11-18 10:14:13 - #openxt	rphilipson	no i guess not :)
+2014-11-18 10:14:19 - #openxt	cosmoecho_	you might try to take this part as well :)
+2014-11-18 10:14:22 - #openxt	cosmoecho_	Sorry Ross
+2014-11-18 10:14:41 - #openxt	cosmoecho_	I ended up pre-allocing dma buffers on boot :(
+2014-11-18 10:14:58 - #openxt	rphilipson	it is on our list of things to do - to upstream our new vusb :)
+2014-11-18 10:15:08 - #openxt	cosmoecho_	But worked as a charm, keeps web cams working even if you kill dom0 with some dd 
+2014-11-18 10:15:21 - #openxt	rphilipson	oh yea, your pre-alloc isoc buffers stuff
+2014-11-18 10:15:31 - #openxt	rphilipson	i dont have that code though :(
+2014-11-18 10:16:10 - #openxt	cosmoecho_	rphilipson, thats not a problem, can give you some drafts ;)
+2014-11-18 10:16:51 - #openxt	cosmoecho_	I tried CMA, I was considering splitting urbs, hacking sg support in host controllers
+2014-11-18 10:17:02 - #openxt	cosmoecho_	and split domain for vusb exclusively
+2014-11-18 10:17:18 - #openxt	cosmoecho_	but all need some more hacking than I had time for
+2014-11-18 10:17:59 - #openxt	rphilipson	yea i bet - well any notes and thoughts you can pass on is much appreciated
+2014-11-18 10:18:05 - #openxt	rphilipson	how is the new gig going?
+2014-11-18 10:19:00 - #openxt	cosmoecho_	rphilipson, not a problem, I will do.
+2014-11-18 10:19:15 - #openxt	cosmoecho_	rphilipson, the gig just started, looks cool and lots of work )
+2014-11-18 10:20:00 - #openxt	cosmoecho_	rphilipson, I am not yet fully engaged, but next week it all starts to roll
+2014-11-18 10:20:51 - #openxt	cosmoecho_	rphilipson, you work now from the office?
+2014-11-18 10:21:07 - #openxt	rphilipson	no i am stuck WFH all the time
+2014-11-18 10:21:41 - #openxt	rphilipson	jed and i are working on getting a office - maybe in burlington
+2014-11-18 10:21:45 - #openxt	rphilipson	where is your office?
+2014-11-18 10:22:08 - #openxt	cosmoecho_	Cambridge
+2014-11-18 10:22:14 - #openxt	cosmoecho_	but also now WFH
+2014-11-18 10:22:20 - #openxt	cosmoecho_	this week for sure
+2014-11-18 10:23:09 - #openxt	rphilipson	cosmoecho_: we never got around to a lunch
+2014-11-18 10:23:20 - #openxt	rphilipson	available this week some time?
+2014-11-18 10:23:57 - #openxt	cosmoecho_	rphilipson, we should! :) But I am out of town this week. Next week? I know its pre-holiday but I will stay local
+2014-11-18 10:24:08 - #openxt	cosmoecho_	rphilipson, so if you are, we can plan it!
+2014-11-18 10:25:00 - #openxt	rphilipson	okee - the beginning of next week would work
+2014-11-18 10:25:11 - #openxt	rphilipson	let me see what jed says
+2014-11-18 10:34:55 - #openxt	cosmoecho_	rphilipson, yes sure ask what do you think. Though next week I might have to stick to Cambridge office
+2014-11-18 10:35:10 - #openxt	cosmoecho_	rphilipson, are you travelling later next week?
+2014-11-18 10:36:12 - #openxt	rphilipson	no we are staying here for thanksgiving
+2014-11-18 10:36:19 - #openxt	rphilipson	may have some company come to town
+2014-11-18 10:36:42 - #openxt	rphilipson	i can come down to cambridge for lunch though :)
+2014-11-18 10:37:01 - #openxt	rphilipson	aha i think i see what is causing this crash
+2014-11-18 10:37:01 - #openxt	cosmoecho_	rphilipson, that will be great! Cambridge is nice :)
+2014-11-18 10:37:11 - #openxt	rphilipson	plus jed lives down there
+2014-11-18 10:37:21 - #openxt	rphilipson	somerville anyway
+2014-11-18 10:40:01 - #openxt	cosmoecho_	rphilipson, what is that? 
+2014-11-18 10:40:12 - #openxt	cosmoecho_	awesome, so we are pretty much all close :)
+2014-11-18 10:40:28 - #openxt	cosmoecho_	so lunch in cambridge seems as a feasible thing!
+2014-11-18 10:55:48 - #openxt	rphilipson	cosmoecho_: coolio we can sort it out next week
+2014-11-18 11:08:13 - #openxt	chrisp___	rphilipson: i dropped in a 2.0 ndvm on to 2.1, and wouldn't you know - the darn tg3 works (without XEN_DOMCTL_assign_device)
+2014-11-18 11:09:49 - #openxt	chrisp___	that is, the 3.1.4 ndvm onto openxt :P
+2014-11-18 11:10:02 - #openxt	rphilipson	chrisp___: interesting - trying to think what that tells us
+2014-11-18 11:10:24 - #openxt	rphilipson	btw i fixed the horrid usb crash that sirnarwhal was seeing
+2014-11-18 11:10:30 - #openxt	chrisp___	nice!
+2014-11-18 11:10:51 - #openxt	sirnarwhal	horrah!
+2014-11-18 11:11:14 - #openxt	cosmoecho_	rphilipson, what was it? I cant stop my curiosity!
+2014-11-18 11:11:54 - #openxt	rphilipson	after the urb completion routine runs, something below it unanchors the urb, effectively freeing it
+2014-11-18 11:12:16 - #openxt	rphilipson	our patch to fix the oops was kicking urb cleanup off to a bottom half to do the work
+2014-11-18 11:12:23 - #openxt	rphilipson	on urbs with no ref counts!
+2014-11-18 11:12:37 - #openxt	sirnarwhal	huzzah!
+2014-11-18 11:12:42 - #openxt	sirnarwhal	thanks for finding the real issue
+2014-11-18 11:12:46 - #openxt	sirnarwhal	and not just making a work-around
+2014-11-18 11:12:52 - #openxt	sirnarwhal	like that fool
+2014-11-18 11:12:55 - #openxt	chrisp___	that fool
+2014-11-18 11:12:56 - #openxt	sirnarwhal	sirnarwhal
+2014-11-18 11:13:04 - #openxt	chrisp___	when you flying to india
+2014-11-18 11:13:10 - #openxt	sirnarwhal	this afternoon
+2014-11-18 11:13:23 - #openxt	chrisp___	how long is the flight?
+2014-11-18 11:13:37 - #openxt	sirnarwhal	9.5 to FRA, 9 FRA to BOM
+2014-11-18 11:13:41 - #openxt	chrisp___	oof
+2014-11-18 11:13:51 - #openxt	chrisp___	good luck with that
+2014-11-18 11:13:53 - #openxt	chrisp___	how long you there?
+2014-11-18 11:14:07 - #openxt	sirnarwhal	Thu-Sat night
+2014-11-18 11:14:32 - #openxt	chrisp___	didn't even stay for some extra sightseeing huh
+2014-11-18 11:14:44 - #openxt	sirnarwhal	Sat is all day
+2014-11-18 11:15:17 - #openxt	chrisp___	for that long of a flight, i'd have to be there for a month
+2014-11-18 11:15:39 - #openxt	chrisp___	how long is the layover
+2014-11-18 11:16:07 - #openxt	sirnarwhal	2hr
+2014-11-18 11:17:41 - #openxt	sirnarwhal	on the way back
+2014-11-18 11:17:49 - #openxt	sirnarwhal	I fly BOM FRA YYC DEN
+2014-11-18 11:17:52 - #openxt	sirnarwhal	which is a bit longer
+2014-11-18 11:18:01 - #openxt	sirnarwhal	but, I'll be doing okay
+2014-11-18 11:18:08 - #openxt	sirnarwhal	have plat status for 2015
+2014-11-18 11:18:22 - #openxt	aikidoka	damn
+2014-11-18 11:18:59 - #openxt	sirnarwhal	I have over 60k PQM thus far this year
+2014-11-18 11:19:20 - #openxt	aikidoka	and I just want to get keep my SPQ plat
+2014-11-18 11:19:24 - #openxt	aikidoka	SGG
+2014-11-18 11:19:26 - #openxt	aikidoka	arg
+2014-11-18 11:19:29 - #openxt	aikidoka	SPGR
+2014-11-18 11:19:35 - #openxt	aikidoka	damn keyboard
+2014-11-18 11:19:43 - #openxt	aikidoka	starwood
+2014-11-18 11:19:56 - #openxt	sirnarwhal	Distance 	18430 miles 	29670 km
+2014-11-18 11:19:56 - #openxt	sirnarwhal	Elite bonus 	9220 miles 	14800 km
+2014-11-18 11:20:03 - #openxt	sirnarwhal	TOTAL 	27650 miles 	44470 km
+2014-11-18 11:20:17 - #openxt	sirnarwhal	I only have hilton silver and marriott gold
+2014-11-18 11:21:23 - #openxt	aikidoka	not sure how I will get in the remaining stays for SPG
+2014-11-18 11:21:38 - #openxt	sirnarwhal	how many do you need?
+2014-11-18 11:21:43 - #openxt	aikidoka	7 or 8 I think
+2014-11-18 11:21:49 - #openxt	sirnarwhal	nights or stays?
+2014-11-18 11:22:13 - #openxt	sirnarwhal	(the above mileage was just for this week's trip)
+2014-11-18 11:22:32 - #openxt	sirnarwhal	I still have a trip to New Orleans and Argentina 
+2014-11-18 11:22:38 - #openxt	sirnarwhal	to factor in
+2014-11-18 11:22:45 - #openxt	aikidoka	ooo, 6 stays
+2014-11-18 11:22:58 - #openxt	aikidoka	looks like I get credit for prepaid even if I don't show up and check in
+2014-11-18 11:23:08 - #openxt	sirnarwhal	nice
+2014-11-18 11:23:17 - #openxt	sirnarwhal	time to find the cheapest possible places
+2014-11-18 11:23:19 - #openxt	sirnarwhal	in the world
+2014-11-18 11:23:19 - #openxt	aikidoka	and trying to extend my stay in CO after snowboarding for 3-4 nights
+2014-11-18 11:23:30 - #openxt	sirnarwhal	when you back in CO?
+2014-11-18 11:23:36 - #openxt	sirnarwhal	the snow is off to a great start
+2014-11-18 11:23:41 - #openxt	sirnarwhal	3' last week
+2014-11-18 11:23:42 - #openxt	aikidoka	12/6 -12/13 in Breck
+2014-11-18 11:23:59 - #openxt	aikidoka	then probably 12/15-12/16 for meetings in CO Springs
+2014-11-18 11:24:04 - #openxt	sirnarwhal	sweet
+2014-11-18 11:24:11 - #openxt	aikidoka	but I will stay up in Denver to do a starwood hotel
+2014-11-18 11:24:12 - #openxt	sirnarwhal	when do you get in?
+2014-11-18 11:24:18 - #openxt	sirnarwhal	nice, ok
+2014-11-18 11:24:29 - #openxt	aikidoka	around 12:30pm on the 6th.  Then a shuttle straight to Breck.
+2014-11-18 11:24:29 - #openxt	sirnarwhal	we should grab a brew at Falling Rock 15 or 16
+2014-11-18 11:24:49 - #openxt	aikidoka	I think my gf flys back on the next Saturday so I have that night and Sunday.
+2014-11-18 11:26:03 - #openxt	aikidoka	Might drive through some of the areas I always look at on Trulia.
+2014-11-18 11:26:44 - #openxt	sirnarwhal	sweet as
+2014-11-18 11:26:51 - #openxt	sirnarwhal	I fly to Argentina on the 17th or 18th
+2014-11-18 11:27:01 - #openxt	aikidoka	damn.  Is this all work?
+2014-11-18 11:27:37 - #openxt	sirnarwhal	no
+2014-11-18 11:27:44 - #openxt	sirnarwhal	Argentina, Japan and NZ was vacay
+2014-11-18 11:27:55 - #openxt	sirnarwhal	taking 3.5wks to climb Aconcagua
+2014-11-18 11:28:01 - #openxt	sirnarwhal	my first of the 7 summits
+2014-11-18 11:28:13 - #openxt	aikidoka	man, I think I need to talk to Citrix about the number of PTO days I get.
+2014-11-18 11:28:44 - #openxt	sirnarwhal	I just use the fact that we're understaffed and hope they won't fire me while I'm gone
+2014-11-18 11:28:53 - #openxt	aikidoka	Ha ha.
+2014-11-18 11:29:15 - #openxt	aikidoka	Well there is the one project that the customer won't let them switch me off of.
+2014-11-18 11:29:19 - #openxt	sirnarwhal	I'm pretty sure I'm going to go neg on PTO
+2014-11-18 11:29:27 - #openxt	aikidoka	even though I no longer cover the overall account.
+2014-11-18 12:32:23 - #openxt	aikidoka	chrisp__: No mkdir needed.  :)
+2014-11-18 12:32:51 - #openxt	aikidoka	couldn't remember if I mentioned it this morning.
+2014-11-18 12:32:59 - #openxt	aikidoka	too lazy to scroll up.
+2014-11-18 14:00:20 - #openxt	aikidoka	I have serial ports!!!
+2014-11-18 14:01:06 - #openxt	sirnarwhal	are they universal?
+2014-11-18 14:01:35 - #openxt	aikidoka	yep.  header on all motherboards should be pretty much standard
+2014-11-18 14:01:49 - #openxt	aikidoka	but UPS sent my two boxes on separate trucks.  odd.
+2014-11-18 14:02:05 - #openxt	sirnarwhal	ACTION was making a joke that you bought a USB port
+2014-11-18 14:02:13 - #openxt	sirnarwhal	ACTION failed
+2014-11-18 14:02:31 - #openxt	aikidoka	doh.  Just treat it like a UDP joke.
+2014-11-18 14:02:37 - #openxt	aikidoka	Nobody cares if you get them.
+2014-11-18 14:02:48 - #openxt	sirnarwhal	bam dum dish
+2014-11-18 14:04:06 - #openxt	aikidoka	I'm here all week
+2014-11-18 14:05:55 - #openxt	earl	I hope not... there is lots of yummy food that needs to eaten on Thursday
+2014-11-18 14:06:25 - #openxt	aikidoka	wouldn't that be next week?
+2014-11-18 14:06:34 - #openxt	earl	oh yeah...
+2014-11-18 14:06:43 - #openxt	earl	maybe i should get out more...
+2014-11-18 14:06:46 - #openxt	aikidoka	ha ha
+2014-11-18 14:07:03 - #openxt	aikidoka	Well I still have yummy food.  Made two filipino dishes this week.
+2014-11-18 14:07:13 - #openxt	aikidoka	And then there is the four kegs of beer in the basement and two batches fermenting.
+2014-11-18 14:07:55 - #openxt	earl	lol i think i need to come visit.. beer and food... don't think you need much more than that
+2014-11-18 14:08:27 - #openxt	aikidoka	"dancers"?
+2014-11-18 14:09:53 - #openxt	aikidoka	hmmm, first boot gives me dom0 prompt.  Second boot seems to hang.  Probably due to the uivm not starting.  But now I can install a serial port and figure it out!!!
+2014-11-18 14:21:20 - #openxt	aikidoka	ugh, try to use my mac and all of the sudden I'm computer illiterate.
+2014-11-18 14:28:39 - #openxt	rphilipson	chrisp___: i am close to submitting this usb fix
+2014-11-18 14:29:10 - #openxt	rphilipson	between this and the previous fix, quite a bit should be fixed wrt to usb
+2014-11-18 14:29:39 - #openxt	rphilipson	perhaps that is a good time to get QA to rerun lotsa USB tests
+2014-11-18 14:48:34 - #openxt	aikidoka	rphilipson: Will the fixed be applied via a patch queue or will there be a patch file for the recipe?
+2014-11-18 14:49:28 - #openxt	rphilipson	the kernel currently uses a separate patchqueue repo
+2014-11-18 14:52:50 - #openxt	aikidoka	cool.  one less adjustment to recipes
+2014-11-18 14:58:05 - #openxt	rphilipson	https://github.com/OpenXT/linux-3.11-pq/pull/5
+2014-11-18 14:58:17 - #openxt	rphilipson	fixes crash and mayhem
+2014-11-18 14:59:21 - #openxt	aikidoka	I've got serial output!  Finally
+2014-11-18 15:00:01 - #openxt	chrisp___	rphilipson: so is the expectation that VT-d is effectively disabled for a device until you assign the device to a domain with assign_device?
+2014-11-18 15:00:13 - #openxt	chrisp___	it just seems odd that devices aren't _always_ assigned to a domain
+2014-11-18 15:00:20 - #openxt	chrisp___	when vt-d is enabled
+2014-11-18 15:02:21 - #openxt	rphilipson	no the are assigned to dom0 via the iommu
+2014-11-18 15:02:44 - #openxt	rphilipson	all of dom0's physmem is mapped 1:1 via the iommu when vt-d is on
+2014-11-18 15:03:40 - #openxt	rphilipson	there are some flags where you can try to map dom0's memory more strictly but they usually lead to death and destruction
+2014-11-18 15:08:05 - #openxt	rphilipson	i have been testing that above fix for some hours now - seems solid
+2014-11-18 15:08:16 - #openxt	rphilipson	anybody care to throw a code review on it
+2014-11-18 15:08:17 - #openxt	rphilipson	?
+2014-11-18 15:08:41 - #openxt	aikidoka	it's outside my ability.  :-/
+2014-11-18 15:12:05 - #openxt	chrisp___	rphilipson: i'll give it a spin
+2014-11-18 15:12:30 - #openxt	rphilipson	cool thanks
+2014-11-18 15:12:43 - #openxt	rphilipson	it is a fairly small change code wise - easy to see what i did
+2014-11-18 15:13:26 - #openxt	masterb	I just merged it, it's like a 2-liner when you ignore the comments
+2014-11-18 15:13:48 - #openxt	rphilipson	sirnarwhal: should i close out your workaround?
+2014-11-18 15:14:57 - #openxt	sirnarwhal	please
+2014-11-18 15:17:41 - #openxt	rphilipson	done
+2014-11-18 15:23:00 - #openxt	chrisp___	i'd have a comment on that commit :P
+2014-11-18 15:23:24 - #openxt	rphilipson	what is the comment?
+2014-11-18 15:23:27 - #openxt	chrisp___	urb->transfer_buffer = NULL;
+2014-11-18 15:23:33 - #openxt	chrisp___	happens after usb_free_urb()
+2014-11-18 15:24:05 - #openxt	chrisp___	if the urb actually frees, then wouldn't that be an invalid write?
+2014-11-18 15:24:46 - #openxt	rphilipson	yup you are right - good catch
+2014-11-18 15:25:08 - #openxt	rphilipson	lemme push a fix
+2014-11-18 15:27:45 - #openxt	rphilipson	it is not even clear why that is there
+2014-11-18 15:28:47 - #openxt	rphilipson	maybe to help out the else case, i will just make it functionally the same
+2014-11-18 15:29:23 - #openxt	rphilipson	this crap doesn't make much sense either:
+2014-11-18 15:29:23 - #openxt	rphilipson	struct usb_device *usbdev = urb->dev ? urb->dev : vusb->usbdev;
+2014-11-18 15:29:32 - #openxt	rphilipson	but i guess i will leave it alone
+2014-11-18 15:29:52 - #openxt	chrisp___	hrmm
+2014-11-18 15:30:01 - #openxt	chrisp___	that what you inherited from enterprise?
+2014-11-18 15:30:20 - #openxt	rphilipson	:)
+2014-11-18 15:31:09 - #openxt	rphilipson	so i move urb->transfer_buffer = NULL; into both the if and else blocks and it is safely done before the free now
+2014-11-18 15:32:06 - #openxt	chrisp___	why not rebase usbback-base with the fixes? or is that just the original dump you want to maintain separately?
+2014-11-18 15:32:42 - #openxt	rphilipson	yea kinda
+2014-11-18 15:33:07 - #openxt	chrisp___	out of curiousity, does xenclient enterprise have their sources posted somewhere online?
+2014-11-18 15:33:17 - #openxt	rphilipson	i dont think so
+2014-11-18 15:33:46 - #openxt	rphilipson	i was thinking when we go to upstream vusb, we could re-layout the patches into a sane set
+2014-11-18 15:34:05 - #openxt	rphilipson	but for now i just wanted the original + the rolled up inherited patches + new stuff
+2014-11-18 15:34:10 - #openxt	chrisp___	fair enough
+2014-11-18 15:36:00 - #openxt	rphilipson	do you want a signed off by in this fix?
+2014-11-18 15:46:38 - #openxt	chrisp___	if the devices are truly assigned to dom0 via vtd, then how does the device able to communicate with the ndvm domU, if assign_device doesn't happen?
+2014-11-18 15:47:36 - #openxt	rphilipson	one sec, about to push...
+2014-11-18 15:49:40 - #openxt	rphilipson	https://github.com/OpenXT/linux-3.11-pq/pull/6
+2014-11-18 15:49:58 - #openxt	rphilipson	chrisp___ the problem you found...
+2014-11-18 15:50:39 - #openxt	chrisp___	diff of diffs yum
+2014-11-18 15:53:08 - #openxt	rphilipson	does that work?
+2014-11-18 15:53:32 - #openxt	chrisp___	why does it not allow me to merge
+2014-11-18 15:54:00 - #openxt	rphilipson	permissions on that repo maybe
+2014-11-18 15:54:32 - #openxt	rphilipson	i guess we need to sort that out better
+2014-11-18 15:54:59 - #openxt	chrisp___	i really just wanted to steal the branch checkout line
+2014-11-18 15:55:22 - #openxt	rphilipson	?
+2014-11-18 15:56:24 - #openxt	chrisp___	you shouldn't leave urb->transfer_buffer = NULL;
+2014-11-18 15:56:37 - #openxt	chrisp___	urb_destroy will kfree that...
+2014-11-18 15:59:38 - #openxt	rphilipson	no i think that is just the vaddr of the dma buffers that were freed in usb_free_coherent
+2014-11-18 16:00:36 - #openxt	chrisp___	 14 static void urb_destroy(struct kref *kref)
+2014-11-18 16:00:36 - #openxt	chrisp___	 15 {
+2014-11-18 16:00:36 - #openxt	chrisp___	 16         struct urb *urb = to_urb(kref);
+2014-11-18 16:00:36 - #openxt	chrisp___	 17 
+2014-11-18 16:00:36 - #openxt	chrisp___	 18         if (urb->transfer_flags & URB_FREE_BUFFER)
+2014-11-18 16:00:39 - #openxt	chrisp___	 19                 kfree(urb->transfer_buffer);
+2014-11-18 16:00:41 - #openxt	chrisp___	 20 
+2014-11-18 16:00:44 - #openxt	chrisp___	 21         kfree(urb);
+2014-11-18 16:00:50 - #openxt	chrisp___	depends on the flags i guess
+2014-11-18 16:01:50 - #openxt	rphilipson	yea
+2014-11-18 16:02:12 - #openxt	chrisp___	as far as usage in usbback, i dunno, that just looks squirrely from a review pov
+2014-11-18 16:03:20 - #openxt	rphilipson	it is what was there 
+2014-11-18 16:04:26 - #openxt	rphilipson	i can dump it but i dont know why they had it there
+2014-11-18 16:04:44 - #openxt	rphilipson	same with this rubbish:
+2014-11-18 16:04:44 - #openxt	rphilipson	struct usb_device *usbdev = urb->dev ? urb->dev : vusb->usbdev;
+2014-11-18 16:05:00 - #openxt	rphilipson	i wanna toss it but i dont know what they were trying to do
+2014-11-18 16:07:50 - #openxt	chrisp___	i'm of the opinion it should only be set to null when it is init'd or free'd
+2014-11-18 16:08:49 - #openxt	chrisp___	at best it would be to cover up another bug :P
+2014-11-18 16:09:48 - #openxt	rphilipson	ok
+2014-11-18 16:09:55 - #openxt	rphilipson	what do you want me to do?
+2014-11-18 16:10:04 - #openxt	rphilipson	just take it out?
+2014-11-18 16:10:42 - #openxt	chrisp___	i would
+2014-11-18 16:10:46 - #openxt	chrisp___	vusb_free_coherent seems to null it out
+2014-11-18 16:11:27 - #openxt	rphilipson	that code is in vusb_free_coherent
+2014-11-18 16:11:34 - #openxt	chrisp___	but don't yell at me if other stuff starts breaking :P
+2014-11-18 16:12:09 - #openxt	rphilipson	i dont think other stuff will start breaking tbh
+2014-11-18 16:12:17 - #openxt	rphilipson	we are not using URB_FREE_BUFFER
+2014-11-18 16:12:36 - #openxt	rphilipson	and the buffer addr is just dangling after the calls to free the dma buffers
+2014-11-18 16:13:01 - #openxt	rphilipson	so i will do what pleases you :)
+2014-11-18 16:15:16 - #openxt	chrisp___	oh i'm a douche
+2014-11-18 16:16:07 - #openxt	chrisp___	keep that
+2014-11-18 16:16:17 - #openxt	chrisp___	this whole diff of diffs thing
+2014-11-18 16:16:26 - #openxt	rphilipson	keep it?
+2014-11-18 16:16:37 - #openxt	rphilipson	dude you have to make up your mind :)
+2014-11-18 16:16:58 - #openxt	chrisp___	yeah no, I was looking at your path
+2014-11-18 16:17:00 - #openxt	aikidoka	he probably saw the one with the -
+2014-11-18 16:17:06 - #openxt	chrisp___	i thought the context was somewhere else
+2014-11-18 16:17:07 - #openxt	aikidoka	or not
+2014-11-18 16:17:10 - #openxt	chrisp___	not in vusb_free_coherent
+2014-11-18 16:17:17 - #openxt	rphilipson	so keep what i had?
+2014-11-18 16:17:19 - #openxt	chrisp___	in one window i'm looking at vusb_free_coherent
+2014-11-18 16:17:28 - #openxt	chrisp___	from the main patch
+2014-11-18 16:17:42 - #openxt	chrisp___	then yours, I didn't put 2 and 2 together
+2014-11-18 16:17:43 - #openxt	rphilipson	diff diff are a pain in the ass no doubt
+2014-11-18 16:17:54 - #openxt	chrisp___	next time i'm just gonna apply the queue :P
+2014-11-18 16:18:16 - #openxt	rphilipson	ok so just so i am clear - you are ok with what i had?
+2014-11-18 16:19:26 - #openxt	rphilipson	i opened it back up
+2014-11-18 16:19:56 - #openxt	rphilipson	ack?
+2014-11-18 16:20:23 - #openxt	chrisp___	you're doing usb_free_urb in the vusb_free_coherent?
+2014-11-18 16:20:46 - #openxt	rphilipson	yes
+2014-11-18 16:21:47 - #openxt	chrisp___	that looks dangerous to me
+2014-11-18 16:22:16 - #openxt	chrisp___	wouldn't free_req be in a use after free?
+2014-11-18 16:22:23 - #openxt	chrisp___	after the vusb_free_coherent?
+2014-11-18 16:23:24 - #openxt	chrisp___	agian, remember I have no context :) so I may be entirely off base here
+2014-11-18 16:24:10 - #openxt	chrisp___	but the only caller is free_req from what I see
+2014-11-18 16:24:16 - #openxt	rphilipson	yes you are right 
+2014-11-18 16:24:18 - #openxt	chrisp___	and that uses the urb immediately after
+2014-11-18 16:24:49 - #openxt	rphilipson	i should have done it in free_req
+2014-11-18 16:25:01 - #openxt	chrisp___	well
+2014-11-18 16:25:02 - #openxt	chrisp___	no
+2014-11-18 16:25:43 - #openxt	chrisp___	dispatch_usb_io also calls free_req then usb_free_urb under fail_response:
+2014-11-18 16:25:51 - #openxt	chrisp___	so that would break that
+2014-11-18 16:26:11 - #openxt	rphilipson	grrrrr
+2014-11-18 16:26:16 - #openxt	rphilipson	the whole patch is a mess
+2014-11-18 16:26:23 - #openxt	chrisp___	so if you do that, then just remove that one instance
+2014-11-18 16:26:49 - #openxt	chrisp___	as free_req is called many spots and only that one invokes the usb_free_urb
+2014-11-18 16:26:53 - #openxt	chrisp___	would be my guess
+2014-11-18 16:27:18 - #openxt	rphilipson	i need a wrapper for free_req
+2014-11-18 16:27:32 - #openxt	rphilipson	that should only happen on the async free path
+2014-11-18 16:27:50 - #openxt	chrisp___	maybe i dunno
+2014-11-18 16:27:59 - #openxt	chrisp___	the whole ref count thing needs more looksy
+2014-11-18 16:28:00 - #openxt	aikidoka	There is nothing upstream we can model off of correct?  That's why there was the XC Ent question?
+2014-11-18 16:28:09 - #openxt	chrisp___	before i could weigh in with any matter of relevance
+2014-11-18 16:28:19 - #openxt	rphilipson	relevance?
+2014-11-18 16:28:37 - #openxt	rphilipson	oh nm
+2014-11-18 16:28:38 - #openxt	chrisp___	truthiness, i dunno
+2014-11-18 16:28:40 - #openxt	chrisp___	i dunno
+2014-11-18 16:28:43 - #openxt	rphilipson	i get it
+2014-11-18 16:28:57 - #openxt	rphilipson	let me rework that but
+2014-11-18 16:29:07 - #openxt	chrisp___	aikidoka: yeah
+2014-11-18 16:29:29 - #openxt	rphilipson	so xce does not have this problem because they use a 64b dom0
+2014-11-18 16:29:36 - #openxt	chrisp___	hah
+2014-11-18 16:29:45 - #openxt	chrisp___	let's just switch ;)
+2014-11-18 16:30:01 - #openxt	chrisp___	who uses 32-bit anymore anyways
+2014-11-18 16:30:24 - #openxt	rphilipson	in a 32b dom0, the arch specific dma cleanup code does an oops when it gets called with irqs disabled
+2014-11-18 16:30:46 - #openxt	rphilipson	to someone else put a patch  in to kick the work out of the completion handler onto a tasklet
+2014-11-18 16:31:02 - #openxt	rphilipson	that introduced the crash sirnarwhal saw
+2014-11-18 16:31:26 - #openxt	rphilipson	because the thing that calls the completion callback frees the urbs 
+2014-11-18 16:31:39 - #openxt	aikidoka	rphilipson: So write a 64-bit dom0 for us over the weekend.  sheesh
+2014-11-18 16:31:39 - #openxt	rphilipson	then later in the tasklet we try to reference them
+2014-11-18 16:32:03 - #openxt	aikidoka	then we can use a Fusion IO card.  :-o
+2014-11-18 16:32:33 - #openxt	sirnarwhal	Toilets are notoriously bad in India, but they don't have to be health hazards. Consider using the left-hand-and-water-jug method preferred by many locals (it is, after all, so much more hygienic than using dry paper), but don't forget to carry soap with you so you can wash your hands properly afterwards.
+2014-11-18 16:32:34 - #openxt	rphilipson	what i am doing with the ref count is keeping the urb alive until after the tasklet is done
+2014-11-18 16:33:01 - #openxt	rphilipson	but i was hasty in my implementation so...it needs a rework
+2014-11-18 16:33:22 - #openxt	aikidoka	sirnarwhal: Remember not to attempt shaking anybody's hand with your left hand.
+2014-11-18 16:33:45 - #openxt	chrisp___	yeah so
+2014-11-18 16:33:53 - #openxt	chrisp___	i don't think my left hand is coordinated enough for that
+2014-11-18 16:34:20 - #openxt	rphilipson	chrisp___ i will resubmit a more solid version, sorry about that
+2014-11-18 16:34:25 - #openxt	chrisp___	it's all good
+2014-11-18 16:34:34 - #openxt	chrisp___	getting closer :)
+2014-11-18 16:35:49 - #openxt	rphilipson	i know what to do now...
+2014-11-18 16:35:58 - #openxt	rphilipson	anyway your earlier question
+2014-11-18 16:37:13 - #openxt	rphilipson	"if the devices are truly assigned to dom0 via vtd, then how does the device able to communicate with the ndvm domU, if assign_device doesn't happen?"
+2014-11-18 16:37:21 - #openxt	aikidoka	chrisp__: Discovered multiple issues around mount points and missing directories.  Rebuilding my images now.
+2014-11-18 16:38:22 - #openxt	rphilipson	chrisp___: setting up the iommu for a device you are giving to a domain is just one part of setting up device passthrough
+2014-11-18 16:39:22 - #openxt	rphilipson	if you dont do the iommu part, the device continues to use the iommu page tables it had before - ie the ones from dom0 which map all memory 1:1
+2014-11-18 16:39:52 - #openxt	rphilipson	the rest of the passthrough setup is what allows a domain to use the device
+2014-11-18 16:39:56 - #openxt	rphilipson	does that make sense?
+2014-11-18 16:58:04 - #openxt	aikidoka	ugh, so freaking cold out and I need to get cpu, ram, and hdd
+2014-11-18 17:02:08 - #openxt	chrisp___	ok, yeah,  that makes sense if dom0 is mapped for all of memory (not constrained to the pages allocated/reserved for dom0_mem)
+2014-11-18 17:03:36 - #openxt	rphilipson	the iommu is mapped for all physical memory though dom0 is constrained in what it can use
+2014-11-18 17:03:45 - #openxt	rphilipson	but devices in dom0 can dma anywhere
+2014-11-18 17:04:00 - #openxt	chrisp___	gotcha
+2014-11-18 17:04:15 - #openxt	rphilipson	cool
+2014-11-18 17:04:19 - #openxt	chrisp___	thnx
+2014-11-18 17:04:23 - #openxt	rphilipson	sure
+2014-11-18 17:04:29 - #openxt	chrisp___	so which devices gave you troubles for flr?
+2014-11-18 17:04:55 - #openxt	rphilipson	masterb looked at that - i am not sure
+2014-11-18 17:20:25 - #openxt	masterb	flr trouble was mainly on calpella iirc
+2014-11-18 17:20:53 - #openxt	masterb	oh actually no, we had issues with some more recent hardware, but that supposedly fixed in the toolstack
+2014-11-18 17:22:58 - #openxt	rphilipson	masterb: do you remember what nics had trouble?
+2014-11-18 17:24:11 - #openxt	masterb	it was very random, I had 2 laptops that were exactly the same model and had the same BIOS settings, one would have issues and the other one wouldn't
+2014-11-18 17:24:16 - #openxt	masterb	for integrated intel nics
+2014-11-18 17:24:47 - #openxt	masterb	I've used desktops with misc NICs and never got an issue, even after the iommu fix iirc
+2014-11-18 17:25:16 - #openxt	rphilipson	oh right it was that T420 rick sent us 
+2014-11-18 17:25:22 - #openxt	rphilipson	and we had a T420
+2014-11-18 17:25:28 - #openxt	rphilipson	or something like that
+2014-11-18 17:25:45 - #openxt	chrisp___	yeah there was one dell 980 that flipped on us w/ the iommu fix w/ i believe the onboard nic
+2014-11-18 17:25:51 - #openxt	masterb	yeah
+2014-11-18 17:26:01 - #openxt	masterb	980 is too old
+2014-11-18 17:26:11 - #openxt	rphilipson	so the T420 would have had some intel integrated nic in it
+2014-11-18 17:37:55 - #openxt	chrisp___	fixed it~!!!
+2014-11-18 18:05:39 - #openxt	chrisp___	rphilipson: set iommu=soft for the ndvm, appears to fix the tg3 issue (remove swiotlb=force)
+2014-11-18 18:06:02 - #openxt	chrisp___	see any issue with that?
+2014-11-18 18:24:42 - #openxt	aikidoka	Anybody tried a Windows 10 VM?
+2014-11-18 18:24:51 - #openxt	aikidoka	Or 8.1?
+2014-11-18 19:09:15 - #openxt	rphilipson	chrisp___: is that with actuall hw iommu passthrough disabled?
+2014-11-18 20:05:37 - #openxt	badsyntax	rphilipson: i've forked the toolstack repository assuming thats what i needed to do, how do i get the build scripts to load my changes :(, or was i to make the changes locally rather
+2014-11-18 20:48:27 - #openxt	chrisp___	rphilipson: no, that is with vtd
+2014-11-18 20:51:01 - #openxt	chrisp___	badsyntax: you can do it either way
+2014-11-18 20:51:17 - #openxt	chrisp___	i made the same changes for other reasons this week. i just cloned the repo locally
+2014-11-18 20:51:20 - #openxt	chrisp___	made changes, committed
+2014-11-18 20:51:45 - #openxt	chrisp___	then updated the recipe to git:///home/chris/git/toolstack/.git;protocol=file
+2014-11-18 20:52:58 - #openxt	chrisp___	you'll want to also set PR = "r4" or something as well to ensure it rebuilds properly
+2014-11-18 20:55:02 - #openxt	badsyntax	chrisp___: recipe ? do_build_sh
+2014-11-18 20:56:55 - #openxt	chrisp___	grep -r toolstack.git build/oe/xenclient/recipes
+2014-11-18 20:57:50 - #openxt	chrisp___	badsyntax: whatcha trying to do with XT?
+2014-11-18 21:00:36 - #openxt	badsyntax	trying to get familiar with it,as my employer might possible utilize it in our organization...
+2014-11-18 21:00:45 - #openxt	badsyntax	my vt-d machine broke....
+2014-11-18 21:01:09 - #openxt	badsyntax	and i needed to use ndvm without vt -d for testing purposes for now
+2014-11-18 21:02:35 - #openxt	chrisp___	yeah, well I can vouch for rphilipson's suggested change as working
+2014-11-18 21:02:46 - #openxt	chrisp___	disabled vtd off a machine, worked ok
+2014-11-18 21:03:58 - #openxt	chrisp___	out of curiousity, what are the motivating factors to use openxt in your org?
+2014-11-18 21:05:52 - #openxt	badsyntax	allowing employers to work from home,but with controlled vdi
+2014-11-18 21:07:59 - #openxt	badsyntax	Well i suggested XT ,why xt over the other platforms?
+2014-11-18 21:08:22 - #openxt	badsyntax	when dealing with multiple vm's i prefer its method of switching and such
+2014-11-18 21:09:30 - #openxt	badsyntax	i guess not as many moving parts as other setups,where the os and the hypervisor may need individual attention
+2014-11-18 21:10:37 - #openxt	badsyntax	chrisp___:permission to pm you?
+2014-11-18 21:44:36 - #openxt	chrisp___	sure
+2014-11-18 21:56:13 - #openxt	rphilipson	badsyntax: i would normally make the changes locally in my build tree and then copy them to my target
+2014-11-18 21:56:24 - #openxt	rphilipson	something like:
+2014-11-18 21:56:49 - #openxt	rphilipson	 ./bb <package> -c force_rebuild
+2014-11-18 21:56:52 - #openxt	rphilipson	 ./bb <package> 
+2014-11-18 21:57:09 - #openxt	rphilipson	but i kinda suck at OE stuffs
+2014-11-18 21:58:33 - #openxt	aikidoka	ugh, just found a = should have been += issue.
+2014-11-18 21:58:40 - #openxt	aikidoka	that will cause some issues
+2014-11-18 21:59:13 - #openxt	rphilipson	somewhere recently we used an =+ and it solved an issue :)
+2014-11-18 22:00:05 - #openxt	aikidoka	couldn't figure out why heimdallr was missing from my rootfs even though xenmgr RDEPENDS it
+2014-11-18 22:00:19 - #openxt	aikidoka	Accidentally did an RDEPENDS= in a inherited class
+2014-11-18 22:00:59 - #openxt	aikidoka	Got my new i7-4790 just waiting for a working installation
+2014-11-18 22:01:09 - #openxt	rphilipson	\o/
+2014-11-18 22:02:28 - #openxt	aikidoka	the water cooler just wants something intense to run
+2014-11-18 22:03:37 - #openxt	flihp	water cooler?
+2014-11-18 22:03:59 - #openxt	flihp	you overclocking?
+2014-11-18 22:04:32 - #openxt	aikidoka	Nope.  Wanted to give one a try finally.
+2014-11-18 22:05:28 - #openxt	aikidoka	In case I want to eventually get one of those fancy new fast i7s that don't do vPro as a build box
+2014-11-18 22:08:33 - #openxt	badsyntax	aikidoka: been following your commits almost daily waiting for the first build,kind of a new build junky
+2014-11-18 22:09:26 - #openxt	aikidoka	I've got some saved and a bunch of unstanged
+2014-11-18 22:09:30 - #openxt	aikidoka	unstaged
+2014-11-18 22:13:58 - #openxt	aikidoka	Wow, this board is behind on some bios updates
+2014-11-18 22:15:51 - #openxt	flihp	you should check out an E3 xeon
+2014-11-18 22:19:02 - #openxt	aikidoka	I need to find a way to convince Intel to loan me one for a build machine.  :-)
+2014-11-18 22:19:08 - #openxt	aikidoka	I can dream
+2014-11-18 22:19:57 - #openxt	badsyntax	i'm uncertain whether i read the entire manual :D,but how do i register to log tickets in jira
+2014-11-18 22:20:18 - #openxt	flihp	badsyntax: just send a message to the mailing list asking for an account
+2014-11-18 22:21:05 - #openxt	badsyntax	thanks :)
+2014-11-18 22:21:40 - #openxt	badsyntax	E3 build machine ?
+2014-11-18 22:21:52 - #openxt	badsyntax	contemplating how to load a 32bit deb onto azure
+2014-11-18 22:22:00 - #openxt	flihp	o_O
+2014-11-18 22:22:07 - #openxt	aikidoka	Don't
+2014-11-18 22:22:20 - #openxt	flihp	I want an HP moonshot
+2014-11-18 22:22:25 - #openxt	aikidoka	I have a 64-bit Wheezy box with a 32-bit Squeeze lxc container
+2014-11-18 22:22:26 - #openxt	flihp	I hear Citrix is doing fun stuffs with those
+2014-11-18 22:22:27 - #openxt	aikidoka	bah
+2014-11-18 22:22:35 - #openxt	aikidoka	So I've heard
+2014-11-18 22:22:40 - #openxt	badsyntax	on azure?
+2014-11-18 22:23:03 - #openxt	aikidoka	I bought a 1000W PS because I want to put a K1 in my XT box and do GPU slicing.  Make it happen.  :-)
+2014-11-18 22:23:18 - #openxt	aikidoka	badsyntax: No, on my laptop
+2014-11-18 22:23:34 - #openxt	flihp	badsyntax: you're doing builds on azure?
+2014-11-18 22:23:35 - #openxt	aikidoka	Just try what they give you and make a container
+2014-11-18 22:23:39 - #openxt	badsyntax	ok i'll try that on azure
+2014-11-18 22:23:43 - #openxt	badsyntax	well i want to begin
+2014-11-18 22:24:52 - #openxt	flihp	I'd imagine that's gonna get pricy
+2014-11-18 22:25:24 - #openxt	flihp	do they do their pricing like EC2
+2014-11-18 22:25:25 - #openxt	flihp	?
+2014-11-18 22:26:11 - #openxt	flihp	now I'm curious
+2014-11-18 22:26:18 - #openxt	badsyntax	amm....... not sure...but...
+2014-11-18 22:26:19 - #openxt	badsyntax	hold
+2014-11-18 22:26:40 - #openxt	flihp	I wonder what cost per build will be like on EC2
+2014-11-18 22:27:00 - #openxt	flihp	we need a community image on EC2 for doing builds
+2014-11-18 22:27:17 - #openxt	flihp	I've always wanted to make a "builder" image with OE
+2014-11-18 22:27:31 - #openxt	flihp	something that just boots, does a build, then shutsdown
+2014-11-18 22:27:33 - #openxt	badsyntax	i get $ 150 on azure a month
+2014-11-18 22:27:36 - #openxt	badsyntax	to do as i please
+2014-11-18 22:27:49 - #openxt	flihp	that may cover it
+2014-11-18 22:28:20 - #openxt	flihp	free $$ is good $$
+2014-11-18 22:28:35 - #openxt	badsyntax	ok, want to try out something to see how long it takes?
+2014-11-18 22:29:20 - #openxt	flihp	how many cores? what sort of disk throughput?
+2014-11-18 22:29:58 - #openxt	aikidoka	ha ha, the drive I put in the machine has an old XenClient install on it.  That was a bit confusing for a moment.
+2014-11-18 22:30:16 - #openxt	badsyntax	http://azure.microsoft.com/en-us/pricing/calculator/
+2014-11-18 22:30:39 - #openxt	flihp	I've been selling off my smaller SSDs on craigslist and installing OpenXT on them before handing them over
+2014-11-18 22:30:49 - #openxt	flihp	hoping someone tries to boot it before they wipe it
+2014-11-18 22:30:56 - #openxt	flihp	gurilla recruiting for the project :D
+2014-11-18 22:31:07 - #openxt	badsyntax	for one machine the max is 1lol
+2014-11-18 22:31:35 - #openxt	badsyntax	sorry
+2014-11-18 22:32:10 - #openxt	aikidoka	what is the DOS equivalent of cat?
+2014-11-18 22:32:39 - #openxt	badsyntax	16 cores 112gb ram
+2014-11-18 22:32:53 - #openxt	badsyntax	theres a choice of ssd storage
+2014-11-18 22:33:35 - #openxt	flihp	aikidoka: deltree /y C:\*.*
+2014-11-18 22:33:48 - #openxt	flihp	badsyntax holy balls
+2014-11-18 22:33:54 - #openxt	flihp	that'll build it
+2014-11-18 22:34:59 - #openxt	aikidoka	dammit, this BIOS updater is Windows only?  Whiskey Tango Foxtrot!
+2014-11-18 22:35:10 - #openxt	flihp	oh man, don't get me started
+2014-11-18 22:35:32 - #openxt	flihp	the number of times I've had to update BIOS for TXT shit ... and the stupid systems that you have to install windows on them first
+2014-11-18 22:35:44 - #openxt	flihp	you need a bartpe USB stick
+2014-11-18 22:35:54 - #openxt	flihp	I think I've still got an image if you want it
+2014-11-18 22:36:39 - #openxt	aikidoka	hang on. I think I'm just too old.
+2014-11-18 22:37:23 - #openxt	aikidoka	yeah.  UEFI is da bomb
+2014-11-18 22:37:35 - #openxt	aikidoka	How do we get tboot up to supporting it?
+2014-11-18 22:37:48 - #openxt	aikidoka	freaking file browser for the USB stick and everything
+2014-11-18 22:37:49 - #openxt	flihp	meta-measured already builds a UEFI capable image :D
+2014-11-18 22:37:58 - #openxt	flihp	yeah the UEFI shell is pretty impressive
+2014-11-18 22:38:18 - #openxt	aikidoka	I really need to get a working build that matches OpenXT so I can start playing instead of porting!
+2014-11-18 22:38:27 - #openxt	aikidoka	Oh, speaking of.
+2014-11-18 22:38:56 - #openxt	aikidoka	Do you want to make OXT-* tickets for the work or is there a way to catagorize them differently?
+2014-11-18 22:39:10 - #openxt	flihp	not sure I understand what you mean
+2014-11-18 22:39:28 - #openxt	flihp	I've gotta move tickets from github to JIRA tonight
+2014-11-18 22:39:35 - #openxt	aikidoka	To track moving to the current OE core and such
+2014-11-18 22:39:52 - #openxt	aikidoka	Do you want them mixed in with the current OpenXT stuff or is there a way to "separate" them.
+2014-11-18 22:40:29 - #openxt	flihp	don't see any reason to separate them, the work is part of OpenXT no?
+2014-11-18 22:40:50 - #openxt	aikidoka	Yes, but depending on how granular they get it could cause some clutter
+2014-11-18 22:41:05 - #openxt	flihp	JIRA is all clutter
+2014-11-18 22:41:15 - #openxt	flihp	better to have too many tickts than not enough IMHO
+2014-11-18 22:41:16 - #openxt	aikidoka	Probably would be good if they could easily be filtered out for people
+2014-11-18 22:41:33 - #openxt	flihp	they can be, can filter on category
+2014-11-18 22:41:42 - #openxt	flihp	tag them with the 'build' category
+2014-11-18 22:42:04 - #openxt	aikidoka	set up any branches yet?
+2014-11-18 22:42:35 - #openxt	flihp	don't know whta twe've reached any sort of consensus on a strategy
+2014-11-18 22:42:52 - #openxt	flihp	discussion should be on the mailing list before anyone starts making changes to the OXT repos
+2014-11-18 22:44:04 - #openxt	aikidoka	that's why I suggested the two branches.  Then unless somebody starts with the openxt "x" branch they will not be affected.
+2014-11-18 22:45:24 - #openxt	flihp	I get your point but I think even adding new branches needs to show up on the list for discussion
+2014-11-18 22:45:42 - #openxt	flihp	making changes, even ones that don't effect people directly, needs to be discussed in public
+2014-11-18 22:46:14 - #openxt	flihp	frankly I don't trust myself to say "this won't effect anyone" and actually know that it's true
+2014-11-18 22:46:29 - #openxt	flihp	knowing me I'll fuck something up :)
+2014-11-18 22:46:47 - #openxt	aikidoka	Sounds like me always using "should" instead of "will" in IT.  That should fix the problem.  
+2014-11-18 22:47:07 - #openxt	flihp	and we all have a stake in this, everyone deserves the opportunity to comment / object
+2014-11-18 22:48:35 - #openxt	aikidoka	How were you currently planning your reorg of the recipes?
+2014-11-18 22:48:41 - #openxt	badsyntax	why doesn't oe and 64 deb play nice?
+2014-11-18 22:48:55 - #openxt	flihp	badsyntax: the eternal question
+2014-11-18 22:48:59 - #openxt	flihp	sooooooo
+2014-11-18 22:49:09 - #openxt	aikidoka	OE or OpenXT?
+2014-11-18 22:49:15 - #openxt	flihp	I know of one thing that causes this problem but there are likely others too ...
+2014-11-18 22:49:37 - #openxt	flihp	our haskell recipe depends on some platform libraries because of weird things in the ghc build
+2014-11-18 22:49:40 - #openxt	aikidoka	Yeah, looking at getting GHC6 to cross compile is on my list
+2014-11-18 22:49:45 - #openxt	flihp	specifically libncurses
+2014-11-18 22:49:53 - #openxt	flihp	the OXT dom0 is 32bit
+2014-11-18 22:50:18 - #openxt	flihp	so the hasekll stuffs (toolstack) links against the libncurses from the build system ... which must be 32bit to match the dom0 target
+2014-11-18 22:50:28 - #openxt	aikidoka	Can't we just convince Ross to create a 64-bit dom0?
+2014-11-18 22:50:30 - #openxt	aikidoka	:-)
+2014-11-18 22:50:36 - #openxt	flihp	o_O
+2014-11-18 22:50:48 - #openxt	flihp	that's a loooooot of work there
+2014-11-18 22:50:56 - #openxt	flihp	it should totally happen, don't get me wrong
+2014-11-18 22:51:46 - #openxt	flihp	alright, ticket migration, eyes on another screen for a bit
+2014-11-18 22:53:48 - #openxt	badsyntax	aikidoka: would the 32bit lxc be crippled by 32 limits like ram limit? or pae
+2014-11-18 22:54:19 - #openxt	aikidoka	Should be.  Making a container just gives it some isolation.  Can't change the fact it is 32-bit
+2014-11-18 22:55:12 - #openxt	badsyntax	see i'd want t to make use of everything rather than limiting itself
+2014-11-18 22:55:29 - #openxt	aikidoka	That won't happen until we can build on 64-bit
+2014-11-18 22:55:57 - #openxt	badsyntax	i was guessing that building on a 32bit pae kernel might just allow full access
+2014-11-18 22:56:53 - #openxt	aikidoka	not familiar enough with it to know for sure
+2014-11-18 22:57:17 - #openxt	aikidoka	not sure if RAM is a limitting factor either
+2014-11-18 22:58:44 - #openxt	badsyntax	good that you brought that up,because i can't recall coming across the proc being crippled ...
+2014-11-18 22:59:18 - #openxt	aikidoka	flihp has always stressed an SSD as being important
+2014-11-18 23:00:21 - #openxt	flihp	RAM isn't typically a limiting factor for builds
+2014-11-18 23:00:36 - #openxt	aikidoka	flihp: On first run should the rootfs be readonly?
+2014-11-18 23:00:47 - #openxt	flihp	yes
+2014-11-18 23:00:48 - #openxt	badsyntax	realized that even installing xt onto a mechanical is a useless endeavour
+2014-11-18 23:01:03 - #openxt	flihp	badsyntax: "mechanical"?
+2014-11-18 23:01:15 - #openxt	badsyntax	disk below 15k rpm
+2014-11-18 23:01:28 - #openxt	flihp	yeah we beat the crap out of the disk
+2014-11-18 23:02:42 - #openxt	flihp	sorry bout that ;)
+2014-11-18 23:04:04 - #openxt	badsyntax	awaiting gvt-g to land.... :D = instant upgrade
+2014-11-18 23:05:24 - #openxt	badsyntax	anyone tested it on regular xen yet?
+2014-11-18 23:09:12 - #openxt	flihp	tested what?
+2014-11-18 23:09:21 - #openxt	flihp	and I hate JIRA markup
+2014-11-18 23:10:32 - #openxt	badsyntax	intel gvt-g
+2014-11-18 23:11:24 - #openxt	flihp	oh the xengt stuff? or whatever they call it today
+2014-11-18 23:11:32 - #openxt	badsyntax	yup
+2014-11-18 23:37:30 - #openxt	flihp	I guess gvt-g is the new name
+2014-11-18 23:37:39 - #openxt	flihp	guess they're distancing themselves from xen
+2014-11-18 23:37:46 - #openxt	flihp	looks like KVM already has support?
+2014-11-18 23:38:55 - #openxt	flihp	maybe not
+2014-11-18 23:40:51 - #openxt	badsyntax	kvm, last i heard there was is an early rough implimrntation

@@ -1,0 +1,239 @@
+2014-11-19 00:20:56 - #openxt	aikidoka	badsyntax: Daniel?
+2014-11-19 00:24:09 - #openxt	badsyntax	?
+2014-11-19 00:34:10 - #openxt	aikidoka	nm, was trying to connect an IRC name with someone who e-mailed me
+2014-11-19 00:36:08 - #openxt	flihp	oh no, we're trying to guess real names?
+2014-11-19 00:36:14 - #openxt	flihp	IRC and IRL shall never cross!
+2014-11-19 00:37:57 - #openxt	aikidoka	[    3.676021] tmpfs: Bad mount option rootcontext
+2014-11-19 00:38:36 - #openxt	flihp	your SELinux is fsck'd
+2014-11-19 00:39:30 - #openxt	flihp	aikidoka: what do you think about implementing the meta-layer structure in the existing build metadata?
+2014-11-19 00:39:39 - #openxt	aikidoka	sure it isn't my util-linux?
+2014-11-19 00:39:41 - #openxt	flihp	something like separating it from the bitbake upgrade
+2014-11-19 00:40:03 - #openxt	flihp	could be mount is trying to parse the rootcontext mount option and it's failing
+2014-11-19 00:40:05 - #openxt	aikidoka	depends on how the current bitbake reacts
+2014-11-19 00:40:14 - #openxt	flihp	which means your mount isn't built with selinux enabled
+2014-11-19 00:40:17 - #openxt	flihp	one of the two
+2014-11-19 00:40:35 - #openxt	flihp	actually I think your bit about util-linux is more likely from the error message
+2014-11-19 00:41:01 - #openxt	aikidoka	it's that pesky meta-selinux maintainer again
+2014-11-19 00:41:17 - #openxt	aikidoka	going and specifying --enable-selinux for a package that takes --with-selinux
+2014-11-19 00:41:28 - #openxt	flihp	dno't look at me, that's on windriver
+2014-11-19 00:42:11 - #openxt	aikidoka	hmmm, no.  That append says to use with-selinux
+2014-11-19 00:42:56 - #openxt	aikidoka	strange, I have it masked.  That means last time I looked it up I found different info.
+2014-11-19 00:43:06 - #openxt	aikidoka	I feel like I sent a link on this
+2014-11-19 00:43:14 - #openxt	flihp	the archlinux wiki?
+2014-11-19 00:43:23 - #openxt	aikidoka	yeah
+2014-11-19 00:43:25 - #openxt	aikidoka	lies!
+2014-11-19 00:43:27 - #openxt	aikidoka	https://wiki.archlinux.org/index.php/SELinux
+2014-11-19 00:43:37 - #openxt	flihp	all depends on versions mang
+2014-11-19 00:43:44 - #openxt	aikidoka	easy fix then
+2014-11-19 00:43:53 - #openxt	flihp	if that's actually the problem that is :P
+2014-11-19 00:45:22 - #openxt	aikidoka	should be
+2014-11-19 00:45:31 - #openxt	aikidoka	util-linux just doesn't understand the option
+2014-11-19 00:45:52 - #openxt	aikidoka	I've probably rebuilt dom0's rootfs I don't know how many times today
+2014-11-19 00:46:27 - #openxt	flihp	yeah I've been there man
+2014-11-19 00:46:29 - #openxt	aikidoka	If only I had picked up that last sheet of drywall I'd have soemthing to do while it rebuilt again
+2014-11-19 00:46:41 - #openxt	flihp	that's why I'm such a junkie for buildbot now
+2014-11-19 00:46:45 - #openxt	flihp	it does the building for you
+2014-11-19 00:46:57 - #openxt	aikidoka	which is more important to building.  Number of cores or CPU speed?
+2014-11-19 00:47:06 - #openxt	flihp	http://builder.twobit.us/waterfall
+2014-11-19 00:47:10 - #openxt	flihp	that's a trick question
+2014-11-19 00:47:17 - #openxt	flihp	all depends on what you're building
+2014-11-19 00:47:32 - #openxt	flihp	the OXT build has bottle necks all over the place
+2014-11-19 00:47:36 - #openxt	aikidoka	oh yeah, that's why I looked into this.  No rule to make target '-lselinux' needed by libmount.ls
+2014-11-19 00:47:37 - #openxt	aikidoka	la
+2014-11-19 00:47:56 - #openxt	flihp	the meta-java stuff doesn't do much parallelism so CPU speed is what you want there
+2014-11-19 00:48:08 - #openxt	flihp	well actually you want the java build stuff to get fixed so it can be parallelized
+2014-11-19 00:49:28 - #openxt	flihp	I want a UIVM without the java dependency in the build
+2014-11-19 00:49:40 - #openxt	flihp	want a lean QT widget UI
+2014-11-19 00:50:06 - #openxt	aikidoka	hmmm, did I port the fix-selinux-compile patch...
+2014-11-19 00:51:45 - #openxt	aikidoka	and it patches something in libmount! hmmm
+2014-11-19 01:18:30 - #openxt	aikidoka	hmmm, xcpmd is failing to configure
+2014-11-19 01:18:35 - #openxt	aikidoka	yet no changes were made to it
+2014-11-19 01:51:01 - #openxt	flihp	sorry, interesting posts on the mailing list
+2014-11-19 01:51:02 - #openxt	flihp	I got lost
+2014-11-19 02:00:30 - #openxt	aikidoka	seems rebuilding util-linux makes just about everything else have to rebuild.  :-/
+2014-11-19 02:00:44 - #openxt	aikidoka	wanted to try one more install before bed
+2014-11-19 02:05:20 - #openxt	flihp	must be late there mang
+2014-11-19 02:05:30 - #openxt	flihp	my build just finished
+2014-11-19 02:06:03 - #openxt	aikidoka	2am
+2014-11-19 02:06:10 - #openxt	flihp	working on a small patch to separate meta layers from the xenclient-oe repo
+2014-11-19 02:06:27 - #openxt	aikidoka	should've just ran the ship recipe and got an iso
+2014-11-19 02:06:33 - #openxt	flihp	will have a pull request in the next day or so, would like your input
+2014-11-19 02:06:53 - #openxt	flihp	will need to find a way to bring this together with your werk
+2014-11-19 02:07:30 - #openxt	aikidoka	Probably can just copy in recipes/appends that did not change versions to start.
+2014-11-19 02:07:38 - #openxt	aikidoka	git diff can handle that for us.
+2014-11-19 02:07:44 - #openxt	flihp	it's a very small patch, I'm working in bits / pieces so they can be merged easily with upstream OXT
+2014-11-19 02:07:47 - #openxt	flihp	true
+2014-11-19 02:07:57 - #openxt	aikidoka	then there will be a bunch where I have not pulled in the old version yet.
+2014-11-19 02:08:34 - #openxt	aikidoka	dammit, why did I do the uivm and not the ndvm
+2014-11-19 02:08:44 - #openxt	flihp	I can't say :P
+2014-11-19 02:08:53 - #openxt	flihp	WHAT WERE YOU THINKING!?
+2014-11-19 02:09:15 - #openxt	aikidoka	damn webkit-gtk takes FOREVER
+2014-11-19 02:09:27 - #openxt	aikidoka	So you want a QT UI and not an HTML5 UI?
+2014-11-19 02:09:41 - #openxt	flihp	yeah the UIVM takes forever
+2014-11-19 02:09:58 - #openxt	flihp	look at the stats from my builder: http://builder.twobit.us/builders/openxt/builds/22
+2014-11-19 02:10:12 - #openxt	flihp	UIVM takes twice as long as the next closest
+2014-11-19 02:10:21 - #openxt	flihp	this is the meta-java stuffs
+2014-11-19 02:11:50 - #openxt	flihp	I need a builder for the in-guest tools :\
+2014-11-19 02:11:55 - #openxt	flihp	werk werk werk
+2014-11-19 02:11:57 - #openxt	aikidoka	hmm, I haven't implemented the autorev stuff yet so I probably don't have that USB fix
+2014-11-19 02:12:25 - #openxt	aikidoka	Need to finally do that
+2014-11-19 02:14:43 - #openxt	aikidoka	BuildBot huh?
+2014-11-19 02:14:50 - #openxt	aikidoka	hmmm
+2014-11-19 02:15:12 - #openxt	flihp	want to set up a builder for the meta-openxt stuffs?
+2014-11-19 02:15:13 - #openxt	aikidoka	I need a 16-core Opteron...
+2014-11-19 02:15:33 - #openxt	flihp	we all need a 16-core Opteron ...
+2014-11-19 02:15:40 - #openxt	aikidoka	don't tell Rob
+2014-11-19 02:15:41 - #openxt	flihp	hell, I need 2
+2014-11-19 02:15:56 - #openxt	flihp	actually you should tell Rob
+2014-11-19 02:16:25 - #openxt	aikidoka	Maybe he'll give us four Xeons then!
+2014-11-19 02:18:09 - #openxt	flihp	want: http://www.buildablade.com/bb-itx84.htm
+2014-11-19 02:19:35 - #openxt	aikidoka	Ha.  A thin mini-itx is what is in my AIO.
+2014-11-19 02:19:48 - #openxt	aikidoka	neat
+2014-11-19 02:20:07 - #openxt	aikidoka	Could have a XenServer pool...\
+2014-11-19 02:20:16 - #openxt	aikidoka	With virtual builder nodes
+2014-11-19 02:21:03 - #openxt	flihp	could have an OXT pool with all that fancy stuff
+2014-11-19 02:21:22 - #openxt	flihp	you can put a Xeon E3v3 on a thin mini-itx board ...
+2014-11-19 02:21:27 - #openxt	aikidoka	OpenXT Server edition
+2014-11-19 02:21:33 - #openxt	aikidoka	damn
+2014-11-19 02:21:40 - #openxt	aikidoka	It could heat my house then
+2014-11-19 02:21:56 - #openxt	flihp	my E3 runs pretty cool actually
+2014-11-19 02:22:07 - #openxt	flihp	the haswell is very cool
+2014-11-19 02:24:07 - #openxt	aikidoka	alright.  ship recipe is building
+2014-11-19 02:25:12 - #openxt	flihp	if you're running mini-itx boards as builders there's no reason to put Xen anything on them
+2014-11-19 02:25:21 - #openxt	flihp	just set them up as straight build slaves and be done with it
+2014-11-19 02:25:29 - #openxt	aikidoka	multi duty
+2014-11-19 02:25:33 - #openxt	aikidoka	could ditch the towers in the basement
+2014-11-19 02:25:43 - #openxt	aikidoka	gotta run the Citrix
+2014-11-19 02:26:29 - #openxt	flihp	I need a colo out here in CA
+2014-11-19 02:26:42 - #openxt	flihp	the guy I found in Boston was great
+2014-11-19 02:26:54 - #openxt	flihp	but that's a lot farther away than it used to be
+2014-11-19 02:27:03 - #openxt	flihp	the server I've got there was fun to rack
+2014-11-19 02:27:21 - #openxt	flihp	I rode my bike to the data center with the server in my messenger bag
+2014-11-19 02:27:25 - #openxt	aikidoka	Can't just sit something under the desk at that office?  :-o
+2014-11-19 02:27:31 - #openxt	aikidoka	ha ha
+2014-11-19 02:28:09 - #openxt	flihp	no nothing like that
+2014-11-19 02:28:39 - #openxt	aikidoka	any word on those AMD s-init patches?
+2014-11-19 02:28:44 - #openxt	aikidoka	still a no go?
+2014-11-19 02:28:55 - #openxt	flihp	i can't touch it in my current ... position
+2014-11-19 02:29:14 - #openxt	flihp	first step is to sync with upstream tboot
+2014-11-19 02:29:32 - #openxt	aikidoka	ugh, dd is so slow
+2014-11-19 02:32:41 - #openxt	aikidoka	doh!  didn't rebuild the installer image
+2014-11-19 02:33:01 - #openxt	aikidoka	hopefully it will not matter
+2014-11-19 02:38:27 - #openxt	flihp	woah it's late
+2014-11-19 02:38:30 - #openxt	flihp	I'm done
+2014-11-19 02:38:42 - #openxt	aikidoka	so run-postinsts is there in the rootfs
+2014-11-19 02:38:52 - #openxt	aikidoka	but if the rootfs is read only, how does it ever go away?
+2014-11-19 02:39:04 - #openxt	flihp	well if rootfs is read only it won't
+2014-11-19 02:39:37 - #openxt	aikidoka	something that was just failing before?
+2014-11-19 02:40:26 - #openxt	aikidoka	anyways.  off to bed myself.  The actual work work again in the morning
+2014-11-19 02:40:55 - #openxt	aikidoka	later man
+2014-11-19 02:41:21 - #openxt	flihp	later
+2014-11-19 08:38:04 - #openxt	aikidoka	too early...
+2014-11-19 08:38:44 - #openxt	earl	lol naw... i've been work'n for the last 2.5 hours 
+2014-11-19 08:46:14 - #openxt	aikidoka	ugh
+2014-11-19 08:50:42 - #openxt	aikidoka	dammit, decided that I want to commit two changes in one file separately.
+2014-11-19 09:03:03 - #openxt	rphilipson	chrisp___ hello
+2014-11-19 09:06:22 - #openxt	aikidoka	anybody know if you can apply a rootcontext to a bind mount in fstab?
+2014-11-19 09:16:39 - #openxt	aikidoka	actually don't think I'd do a bind mount.
+2014-11-19 09:16:44 - #openxt	aikidoka	SELinux makes my brain hurt
+2014-11-19 09:23:16 - #openxt	aikidoka	Where's badsyntax?  He just missed 20 pushed commits.
+2014-11-19 09:23:32 - #openxt	aikidoka	Now gotta figure out the fstab thing tonight
+2014-11-19 10:21:36 - #openxt	chrisp___	reading folks talk about selinux makes my brain hurt
+2014-11-19 10:21:50 - #openxt	chrisp___	rphilipson: sup
+2014-11-19 10:23:38 - #openxt	chrisp___	22:31 <@flihp> I've been selling off my smaller SSDs on craigslist and installing OpenXT on them before handing them over
+2014-11-19 10:23:41 - #openxt	chrisp___	22:31 <@flihp> hoping someone tries to boot it before they wipe it
+2014-11-19 10:23:42 - #openxt	chrisp___	that's awesome
+2014-11-19 10:23:45 - #openxt	chrisp___	22:31 <@flihp> gurilla recruiting for the project :D
+2014-11-19 10:25:33 - #openxt	rphilipson	chrisp___ - new version of the fix: https://github.com/OpenXT/linux-3.11-pq/pull/8
+2014-11-19 10:49:34 - #openxt	aikidoka	KCD makes my head hurt also
+2014-11-19 10:59:22 - #openxt	rphilipson	KCD?
+2014-11-19 11:24:11 - #openxt	chrisp___	+1
+2014-11-19 11:24:23 - #openxt	chrisp___	tested and working well for ya?
+2014-11-19 11:27:12 - #openxt	rphilipson	yea though due to the nature of this, my fix yesterday (that sucked) worked well for me too
+2014-11-19 11:27:31 - #openxt	rphilipson	it is rather timing and load sensitive 
+2014-11-19 11:28:09 - #openxt	rphilipson	anybody else wanna try it out?
+2014-11-19 11:37:36 - #openxt	chrisp___	i just need to finish setting up a windows build VM
+2014-11-19 11:37:50 - #openxt	chrisp___	oh wait, no thats only dom0
+2014-11-19 11:44:56 - #openxt	chrisp___	i'll take it for a spin
+2014-11-19 11:45:09 - #openxt	chrisp___	as soon as I figure out why swiotlb=force breaks things
+2014-11-19 11:46:35 - #openxt	chrisp___	best I have is some docs saying it's not necessary for new kernel revs on PV guests
+2014-11-19 11:46:41 - #openxt	chrisp___	dunno why it's breaking it tho
+2014-11-19 11:55:31 - #openxt	rphilipson	chrisp___: i am not sure either
+2014-11-19 12:09:12 - #openxt	chrisp___	best I can figure, it forces the use of bounce buffers.  i just don't know why that would be broken... but either way, it sounds like a flag you don't want to enable anywho
+2014-11-19 12:12:44 - #openxt	rogersc	rphilipson: I'll give it a go.
+2014-11-19 13:31:18 - #openxt	rphilipson	thanks rogersc
+2014-11-19 13:55:26 - #openxt	aikidoka	rphilipson: KCD = Kerberos Constrained Delegation
+2014-11-19 14:09:31 - #openxt	rogersc	dickonr: you there?
+2014-11-19 14:10:34 - #openxt	rogersc	or rather, qdickon_, you there?
+2014-11-19 15:01:23 - #openxt	rogersc	rphilipson: I'm running into some interesting-ish problems (not related to your fix) with my build tree doing this partial rebuild so while I'm trying to get a build to test your usb stuff it's looking like it could take awhile.
+2014-11-19 15:02:06 - #openxt	rogersc	Not sure what kind of time table you were on for merging that fix
+2014-11-19 15:04:23 - #openxt	rphilipson	i was seeing some weird things when i was rebuilding the other day too - mainly weird because it was new behavior
+2014-11-19 15:06:35 - #openxt	rogersc	I have a feeling the problems I'm seeing are my own fault somehow.  I suppose I'll know soon enough
+2014-11-19 15:18:26 - #openxt	rphilipson	chrisp___: should we have a ticket to get XSA 109/110 in?
+2014-11-19 15:25:43 - #openxt	chrisp___	yeah
+2014-11-19 15:26:16 - #openxt	chrisp___	i'll do it
+2014-11-19 15:26:58 - #openxt	chrisp___	done
+2014-11-19 15:27:51 - #openxt	rphilipson	thx
+2014-11-19 15:49:28 - #openxt	rphilipson	chrisp___ sorry i forget - did you say removing swiotlb=force worked fine with iommu on for the ndvm?
+2014-11-19 16:02:24 - #openxt	chrisp___	yes
+2014-11-19 16:02:43 - #openxt	chrisp___	from everything i've read, swiotlb=force is undesirable
+2014-11-19 16:02:58 - #openxt	kevin_home	chrisp___: you plan on doing the XSA 109/110 yourself or would you like me to have my minion do this tomorrow (assuming he is here)?
+2014-11-19 16:03:00 - #openxt	chrisp___	at least with the current pvops kernel
+2014-11-19 16:03:07 - #openxt	chrisp___	kevin_home: just did it
+2014-11-19 16:03:34 - #openxt	kevin_home	Bah, I'm too late then
+2014-11-19 16:04:02 - #openxt	chrisp___	https://github.com/OpenXT/xen-common-pq/pull/4
+2014-11-19 16:04:06 - #openxt	chrisp___	welcome to test it tho :)
+2014-11-19 16:04:15 - #openxt	chrisp___	i just built it, haven't installed it yet
+2014-11-19 16:04:21 - #openxt	kevin_home	Did you follow a similar process to https://github.com/OpenXT/openxt/wiki/Applying-Xen-Patches or anything? Looking to independently validate what I wrote as far as build testing
+2014-11-19 16:07:59 - #openxt	chrisp___	something like that, ya
+2014-11-19 16:08:10 - #openxt	chrisp___	the biggest update i would see is that tmp-eglibc/work/core2-oe-linux/xen-4.3.2-r0/xen-<version> needs to be updated
+2014-11-19 16:08:29 - #openxt	chrisp___	now it's something like tmp-eglibc/work/core2-oe-linux/xen-4.3.3+git1+4c49945c84c21e3ab51e8ec031b032839
+2014-11-19 16:08:33 - #openxt	chrisp___	58e6257-r6/xen-4.3.3/
+2014-11-19 16:09:03 - #openxt	chrisp___	where the 4c... is the commit hash for the pq you are building against
+2014-11-19 16:09:10 - #openxt	chrisp___	and xen-4.3.2 needs to be 4.33
+2014-11-19 16:13:16 - #openxt	chrisp___	made some minor wiki tweaks
+2014-11-19 16:13:24 - #openxt	chrisp___	didn't know the page was there, good to know
+2014-11-19 16:16:02 - #openxt	chrisp___	kevin_home: if you are looking for tasks, I think helping with the usb testing would be huge. I'm sure Ross wouldn't complain about someone helping validate his fixes :)
+2014-11-19 16:41:20 - #openxt	rphilipson	chrisp___ i am finding the same infos - that swiotlb=force was needed for older domU's doing passthrough
+2014-11-19 16:41:29 - #openxt	rphilipson	http://wiki.xen.org/old-wiki/xenwiki/XenPCIpassthrough.html
+2014-11-19 16:41:51 - #openxt	rphilipson	"Add this option to your domU (guest VM) kernel boot options (cmdline arguments) list :
+2014-11-19 16:41:51 - #openxt	rphilipson	swiotlb=force
+2014-11-19 16:41:51 - #openxt	rphilipson	NOTE: This option is only required for older PV guest kernel versions (linux-2.6.18-xen, RHEL5, SLES10/11, Debian etch/lenny).
+2014-11-19 16:41:52 - #openxt	rphilipson	upstream kernel.org (pvops) Linux domU kernels requires just this option:
+2014-11-19 16:41:54 - #openxt	rphilipson	iommu=soft"
+2014-11-19 16:41:59 - #openxt	rphilipson	...
+2014-11-19 16:42:05 - #openxt	rphilipson	so i am inclined to ack
+2014-11-19 16:42:30 - #openxt	rphilipson	at least lets get it in and see if there are any gotchas
+2014-11-19 16:48:34 - #openxt	rphilipson	but masterb's concerns are valid too 
+2014-11-19 16:50:45 - #openxt	chrisp___	yeah i read that wiki too
+2014-11-19 16:50:55 - #openxt	chrisp___	what are jed's concerns?
+2014-11-19 16:51:08 - #openxt	chrisp___	scrollback not catching it
+2014-11-19 16:53:19 - #openxt	chrisp___	nvm
+2014-11-19 16:54:42 - #openxt	rphilipson	oh it  is a comment in the pull req
+2014-11-19 16:54:54 - #openxt	chrisp___	ya caught it 
+2014-11-19 16:56:29 - #openxt	chrisp___	i'm inclined to merge and let the testing see if it breaks anything anywhere else just based on the wiki
+2014-11-19 16:57:16 - #openxt	chrisp___	i headed into the rabbit hole of backporting some of the swiotlb changes to see if it's fixed, but decided it's not really worth it at this point based on the infos
+2014-11-19 16:57:40 - #openxt	chrisp___	but it def needs more test
+2014-11-19 16:58:26 - #openxt	rphilipson	yea, though i would like to know what those issues were - vaguely remember them but it was a long time ago
+2014-11-19 16:58:46 - #openxt	chrisp___	was your 2.6.32 a pvops kernel?
+2014-11-19 16:58:57 - #openxt	rphilipson	maybe since ericch is still at ctx he can do a little jira mining
+2014-11-19 16:58:58 - #openxt	chrisp___	does the wiki comment apply?
+2014-11-19 16:59:05 - #openxt	chrisp___	it sounds like the meaning of swiotlb=force changed 
+2014-11-19 16:59:32 - #openxt	rphilipson	it was 2.6.32 xenified, not really pvops
+2014-11-19 16:59:40 - #openxt	rphilipson	probably something we got from XS
+2014-11-19 17:00:27 - #openxt	rphilipson	anyway if eric could find a ticket, at least it might give us an idea what to test
+2014-11-19 17:01:12 - #openxt	chrisp___	ya
+2014-11-19 17:02:35 - #openxt	rphilipson	i defer to masterb on whether to throw it in at this point since he seems to remember more than i do
+2014-11-19 17:05:36 - #openxt	chrisp___	does eric have a github account?
+2014-11-19 17:05:50 - #openxt	chrisp___	i think its a good idea to ping him to look into it
+2014-11-19 17:06:10 - #openxt	rphilipson	yea he does
+2014-11-19 17:06:22 - #openxt	rphilipson	i will send him an email
+2014-11-19 17:06:33 - #openxt	chrisp___	don't see him on the openxt team
+2014-11-19 17:09:00 - #openxt	rphilipson	he has a fork on the qemu stuffs
+2014-11-19 17:09:01 - #openxt	rphilipson	https://github.com/OpenXT/qemu-dm-pq/network
+2014-11-19 17:09:18 - #openxt	rphilipson	the github groups need some work :)
+2014-11-19 17:21:49 - #openxt	chrisp___	is the point of the e1000e recipe to get updated e1000 support?
+2014-11-19 17:21:57 - #openxt	chrisp___	as opposed to rely on the e1000 in the kernel?
+2014-11-19 17:31:07 - #openxt	rphilipson	chrisp___: eric is going to see what he can dig up on swiotlb in the morning
+2014-11-19 17:36:47 - #openxt	chrisp___	good dealio
+2014-11-19 17:36:49 - #openxt	chrisp___	heading out
